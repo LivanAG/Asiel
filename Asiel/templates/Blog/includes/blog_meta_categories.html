@@ -1,0 +1,12 @@
+{% load i18n easy_thumbnails_tags cms_tags %}
+
+
+<ul class="post-detail tags mt-2">
+    {% if post.categories.exists %}
+        {% for category in post.categories.all %}
+            {% if category.slug %}
+                <li class="category_{{ forloop.counter }} small"><a href="{% url 'djangocms_blog:posts-category' category=category.slug %}" class="blog-categories-{{ category.count }} small">{{category.name}}</a>{% if not forloop.last %},{% endif %}</li>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</ul>

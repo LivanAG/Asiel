@@ -1,0 +1,77 @@
+{% extends "djangocms_blog/base.html" %}
+{% load i18n easy_thumbnails_tags menu_tags %}{% spaceless %}
+
+{% block canonical_url %}<link rel="canonical" href="{{ view.get_view_url }}"/>{% endblock canonical_url %}
+
+
+{% block Breadcrumb_title %}Blog {% endblock %}
+
+{% block Breadcrumb_desc %} Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. {% endblock %}
+
+{% block breadcrumb %}
+<li><a href="/">Home</a></li>
+<li>Blog - <span class="small"> {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ paginator.num_pages }}</span></li>
+{% endblock %}
+{% block content_blog %}
+
+<section class="blog-list blog">
+    {% block blog_title %}
+    <header class="section-title mt-5 ">
+        <h2>
+        {% if author %}{% trans "Articles by" %} {{ author.get_full_name }}
+        {% elif archive_date %}{% trans "Archive" %}: {% if month %}{{ archive_date|date:'F' }} {% endif %}{{ year }}
+        {% elif tagged_entries %}{% trans "Tag" %}: {{ tagged_entries|capfirst }}
+        {% elif category %}{% trans "Category" %}: {{ category }}{% endif %}
+        </h2>
+    </header>
+    {% endblock %}
+
+
+   <div class="row">
+        {% for post in post_list %}
+            {% include "Blog/includes/blog_item.html" with post=post image="true" TRUNCWORDS_COUNT=TRUNCWORDS_COUNT %}
+        {% empty %}
+        <p class="blog-empty">{% trans "No article found." %}</p>
+        {% endfor %}
+        {% if author or archive_date or tagged_entries %}
+        <p class="blog-back"><a href="{% url 'djangocms_blog:posts-latest' %}">{% trans "Back" %}</a></p>
+        {% endif %}
+
+    </div>
+
+    <div class="blog-pagination" data-aos="fade-up">
+        {% if is_paginated %}
+
+        <div class="row justify-content-center">
+            <ul >
+            
+                {% if page_obj.has_previous %}
+                <li><a href="?{{ view.page_kwarg }}={{ page_obj.previous_page_number }}"><i class="icofont-rounded-left"></i></a></li>
+                {% else %}
+                <li class="disabled"><i class="icofont-rounded-left"></i></li>
+                {% endif %}
+
+               
+                <li><a >{{ page_obj.number }}</a></li>
+                
+                
+                
+                {% if page_obj.has_next %}
+                <li><a href="?{{ view.page_kwarg }}={{ page_obj.next_page_number }}"><i class="icofont-rounded-right"></i></a></li>
+                {% else %}
+                <li class="disabled"><i class="icofont-rounded-right"></i></li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="row justify-content-center">
+            {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ paginator.num_pages }}
+        </div>
+        
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
+
+{% endspaceless %}

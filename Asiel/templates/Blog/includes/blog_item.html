@@ -1,0 +1,71 @@
+{% load djangocms_blog i18n easy_thumbnails_tags cms_tags %}
+
+
+<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+
+    <article id="post-{{ post.slug }}" class="post-item entry">
+            
+          {% if image and post.main_image %}
+          
+            <div class="entry-img">
+              <img src="{{ post.main_image.url }}" class="img-fluid" alt="{{ post.main_image.default_alt_text }}" />
+            </div>
+            {% else %}
+                {% media_images post as previews %}
+                <div class="blog-visual">
+                  {% for preview in previews %}<img src="{{ preview }}" />{% endfor %}
+                </div>
+            {% endif %}
+         
+
+            <h2 class="entry-title">
+                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </h2>
+
+            <div>
+              {% if post.subtitle %}
+
+                <p style="font-family: Tahoma, sans-serif;color:#473d3a;font-weight: 500;font-size: 17px;">{{ post.subtitle }}</p>
+              
+              {%endif %}
+            </div>
+           
+        <div class="entry-meta">
+          {% block blog_meta_author %}
+          {% include "Blog/includes/blog_meta_author.html" %}
+          {% endblock %}
+        </div>   
+        
+        <div class="entry-meta">
+          {% block blog_meta_categories %}
+          {% include "Blog/includes/blog_meta_categories.html" %}
+          {% endblock %}
+        </div>
+
+        <div class="entry-meta">
+          {% block blog_meta_tags %}
+          {% include "Blog/includes/blog_meta_tags.html" %}
+          {% endblock %}
+        </div>
+
+
+        <div class="entry-content">
+          
+              <div class="blog-lead">
+                {% if not TRUNCWORDS_COUNT %}
+                    {% render_model post "abstract" "" "" "safe" %}
+                {% else %}
+                    {% render_model post "abstract" "" "" "truncatewords_html:TRUNCWORDS_COUNT|safe"  %}
+                {% endif %}
+              </div>
+              <div class="read-more">
+                <a href="{{ post.get_absolute_url }}">{% trans "read more" %} &raquo;</a>
+              </div>
+        </div>
+
+        
+        
+    </article>
+
+</div>
+
