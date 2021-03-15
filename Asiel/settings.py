@@ -179,6 +179,7 @@ INSTALLED_APPS = [
     'djangocms_googlemap',
     'djangocms_video',
     'Asiel',
+    'Apps.Login',
 
     
     # djangocms-blog y dependencias
@@ -257,3 +258,9 @@ META_USE_OG_PROPERTIES=True
 META_USE_TWITTER_PROPERTIES=True
 META_USE_GOOGLEPLUS_PROPERTIES=True # django-meta 1.x+
 META_USE_SCHEMAORG_PROPERTIES=True  # django-meta 2.x+
+
+
+LOGIN_REDIRECT_URL = '/'
+
+
+LOGOUT_REDIRECT_URL = '/'

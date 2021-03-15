@@ -10,7 +10,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
-
+    path('',include('Apps.Login.urls')),
 
     # urls djangocms-blog 
     path(r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
