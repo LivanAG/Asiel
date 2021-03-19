@@ -1,5 +1,5 @@
 {% extends "djangocms_blog/base.html" %}
-{% load i18n easy_thumbnails_tags cms_tags %}
+{% load i18n easy_thumbnails_tags cms_tags comments comments_xtd%}
 
 {% block canonical_url %}<link rel="canonical" href="{{ meta.url }}"/>{% endblock canonical_url %}
 {% block title %}{{ post.get_title }}{% endblock %}
@@ -38,6 +38,77 @@
             {% include "djangocms_blog/includes/blog_item.html" with post=related image="true" TRUNCWORDS_COUNT=TRUNCWORDS_COUNT %}
         {% endfor %}
         </section>
+    {% endif %}
+
+    {% if post.enable_comments %}
+    <div class="blog-comments">
+
+      {% get_comment_count for post as comment_count %}
+      
+      <div class="py-4 text-center">
+        &nbsp;&sdot;&nbsp;
+        {{ comment_count }} comment{{ comment_count|pluralize }}
+        ha{{ comment_count|pluralize:"s,ve" }} been posted.
+      </div>
+     
+      <ul class="media-list">
+        {% render_xtdcomment_tree for post allow_feedback  allow_flagging show_feedback  %}
+      </ul>
+    
+    
+      <div id="reply-form" class="reply-form">
+        <h4>Dejar Comentario</h4>
+        <p>Your email address will not be published. Required fields are marked * </p>
+
+        {% get_comment_form for post as form %}
+        <form action="{% comment_form_target %}" method="post">
+          {% csrf_token %}
+
+          {{form.content_type}}
+          {{form.object_pk}}
+          {{form.timestamp}}
+          {{form.security_hash}}
+          {{form.reply_to}}
+          <input type="url" hidden name="url" id="id_url">
+
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" maxlength="50" class="form-control" placeholder="Your Name*" required="" id="id_name">
+            </div>
+            <div class="col-md-6 form-group">
+              <input type="email" name="email" class="form-control" placeholder="Your Email*" required="" id="id_email">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col form-group">
+              <textarea name="comment" class="form-control" placeholder="Your Comment*" maxlength="3000" required="" id="id_comment"></textarea>
+            </div>
+          </div>
+
+          <p style="display:none;">
+            <label for="id_honeypot">Si introduce algo en este campo su comentario será tratado como spam:</label> <input type="text" name="honeypot" id="id_honeypot">
+          </p>
+
+          <input type="hidden" name="next" value="{% url 'comments-xtd-sent' %}" /> 
+        
+
+          <div class="custom-control custom-checkbox mb-5">
+            <input type="checkbox" name="followup" id="id_followup" class="custom-control-input">
+            <label for="id_followup" class="custom-control-label">&nbsp;Notifíqueme subsiguientes comentarios</label>
+          </div>
+
+          <p class="submit">
+            <input type="submit" class="btn btn-primary" name="post" class="submit-post" value="Enviar">
+          </p>
+
+          <div class="alert alert-danger" data-comment-element="errors" hidden="">
+          </div>
+        </form>
+
+        
+      </div>
+
+    </div><!-- End blog comments -->
     {% endif %}
 </article>
 {% endblock content_blog %}

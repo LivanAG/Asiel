@@ -178,8 +178,14 @@ INSTALLED_APPS = [
     'djangocms_style',
     'djangocms_googlemap',
     'djangocms_video',
+    'widget_tweaks',
     'Asiel',
     'Apps.Login',
+
+
+    # django-newsletter y dependencias
+    'sorl.thumbnail',
+    'newsletter',
 
     
     # djangocms-blog y dependencias
@@ -190,6 +196,10 @@ INSTALLED_APPS = [
     'meta',
     'sortedm2m',
     'djangocms_blog',
+
+    # django_comments_xtd y dependencias
+    'django_comments_xtd',
+    'django_comments',
 ]
 
 LANGUAGES = (
@@ -264,3 +274,32 @@ LOGIN_REDIRECT_URL = '/'
 
 
 LOGOUT_REDIRECT_URL = '/'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST="smtp.gmail.com"
+EMAIL_USE_TLS=True
+EMAIL_PORT = 587
+EMAIL_HOST_USER="frankaranda1960@gmail.com"
+EMAIL_HOST_PASSWORD="aranda@1960"
+DOMAIN = ''
+
+
+NEWSLETTER_CONFIRM_EMAIL = True
+
+
+# Amount of seconds to wait between each email. Here 100ms is used.
+NEWSLETTER_EMAIL_DELAY = 0.1
+
+# Amount of seconds to wait between each batch. Here one minute is used.
+NEWSLETTER_BATCH_DELAY = 60
+
+# Number of emails in one batch
+NEWSLETTER_BATCH_SIZE = 100
+
+
+
+COMMENTS_APP='django_comments_xtd'
+
+COMMENTS_XTD_CONFIRM_EMAIL = True
