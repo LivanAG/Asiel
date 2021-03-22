@@ -1,0 +1,63 @@
+{% load static%}
+
+<style>
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+
+@media (max-width: 768px) {
+  #header {
+    height: 60px;
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  #header .logo h1 {
+    font-size: 28px;
+    padding: 4px 0;
+  }
+}
+
+.header-bg {
+  background: url('{{instance.imagen1.url}}');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+}
+
+@media (min-width: 1025px) {
+  .header-bg {
+    background-attachment: fixed;
+  }
+}
+
+.home-overly {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+</style>
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel"></div>
+    <!-- ======= Blog Header ======= -->
+    <div class="header-bg page-area">
+        <div class="home-overly"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="slider-content text-center">
+                <div class="header-bottom">
+                  <div class="layer2 wow zoomIn" data-wow-duration="1s" data-wow-delay=".4s">
+                    <h1 class="title2">{{instance.titulo}}</h1>
+                  </div>
+                  <div class="layer3 wow zoomInUp" data-wow-duration="2s" data-wow-delay="1s">
+                    <h2 class="title3">{{instance.subtitulo}}</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Blog Header -->
+</div>

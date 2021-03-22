@@ -1,0 +1,15 @@
+{% load i18n easy_thumbnails_tags cms_tags %}
+
+
+<ul class="post-detail">
+    {% if post.date_published %}
+    <li class="d-flex align-items-center"><i class="fa fa-calendar"></i>
+        {{ post.date_published|date:"DATE_FORMAT" }}
+    </li>
+    {% endif %}
+    {% if post.date_featured %}
+    <li class="d-flex align-items-center "><i class="fa fa-calendar"></i>
+        {{ post.date_featured|date:"DATE_FORMAT"}}
+    </li>
+    {% endif %}
+</ul>

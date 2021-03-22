@@ -14,7 +14,9 @@
 {% endblock %}
 {% block content_blog %}
  
-<section class="blog-list blog">
+
+<section  class="blog-list blog-page area-padding">
+   
     {% block blog_title %}
     <header class="section-title mt-5 ">
         <h2>
@@ -26,50 +28,235 @@
     </header>
     {% endblock %}
 
+    <div class="container">
 
-   <div class="row">
-        {% for post in post_list %}
-            {% include "Blog/includes/blog_item.html" with post=post image="true" TRUNCWORDS_COUNT=TRUNCWORDS_COUNT %}
-        {% empty %}
-        <p class="blog-empty">{% trans "No article found." %}</p>
-        {% endfor %}
-        {% if author or archive_date or tagged_entries %}
-        <p class="blog-back"><a href="{% url 'djangocms_blog:posts-latest' %}">{% trans "Back" %}</a></p>
-        {% endif %}
-
-    </div>
-
-    <div class="blog-pagination" data-aos="fade-up">
-        {% if is_paginated %}
-
-        <div class="row justify-content-center">
-            <ul >
+        <div class="row">
             
-                {% if page_obj.has_previous %}
-                <li><a href="?{{ view.page_kwarg }}={{ page_obj.previous_page_number }}"><i class="icofont-rounded-left"></i></a></li>
-                {% else %}
-                <li class="disabled"><i class="icofont-rounded-left"></i></li>
-                {% endif %}
+            <!-- Barra Lateral -->
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-               
-                <li><a >{{ page_obj.number }}</a></li>
-                
-                
-                
-                {% if page_obj.has_next %}
-                <li><a href="?{{ view.page_kwarg }}={{ page_obj.next_page_number }}"><i class="icofont-rounded-right"></i></a></li>
-                {% else %}
-                <li class="disabled"><i class="icofont-rounded-right"></i></li>
-                {% endif %}
-            </ul>
-        </div>
+                <div class="page-head-blog">
 
-        <div class="row justify-content-center">
-            {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ paginator.num_pages }}
-        </div>
+
+                  <div class="single-blog-page">
+                    <!-- recent start -->
+                    <div class="left-blog">
+                      <h4>recent post</h4>
+                      <div class="recent-post">
+                        <!-- start single post -->
+                        <div class="recent-single-post">
+                          <div class="post-img">
+                            <a href="#">
+                              <img src="assets/img/blog/1.jpg" alt="">
+                            </a>
+                          </div>
+                          <div class="pst-content">
+                            <p><a href="#"> Redug Lerse dolor sit amet consect adipis elit.</a></p>
+                          </div>
+                        </div>
+                        <!-- End single post -->
+                        <!-- start single post -->
+                        <div class="recent-single-post">
+                          <div class="post-img">
+                            <a href="#">
+                              <img src="assets/img/blog/2.jpg" alt="">
+                            </a>
+                          </div>
+                          <div class="pst-content">
+                            <p><a href="#"> Redug Lerse dolor sit amet consect adipis elit.</a></p>
+                          </div>
+                        </div>
+                        <!-- End single post -->
+                        <!-- start single post -->
+                        <div class="recent-single-post">
+                          <div class="post-img">
+                            <a href="#">
+                              <img src="assets/img/blog/3.jpg" alt="">
+                            </a>
+                          </div>
+                          <div class="pst-content">
+                            <p><a href="#"> Redug Lerse dolor sit amet consect adipis elit.</a></p>
+                          </div>
+                        </div>
+                        <!-- End single post -->
+                        <!-- start single post -->
+                        <div class="recent-single-post">
+                          <div class="post-img">
+                            <a href="#">
+                              <img src="assets/img/blog/4.jpg" alt="">
+                            </a>
+                          </div>
+                          <div class="pst-content">
+                            <p><a href="#"> Redug Lerse dolor sit amet consect adipis elit.</a></p>
+                          </div>
+                        </div>
+                        <!-- End single post -->
+                      </div>
+                    </div>
+                    <!-- recent end -->
+                  </div>
+
+                  <div class="single-blog-page">
+                    <div class="left-blog">
+                      <h4>categories</h4>
+                      <ul>
+                        <li>
+                          <a href="#">Portfolio</a>
+                        </li>
+                        <li>
+                          <a href="#">Project</a>
+                        </li>
+                        <li>
+                          <a href="#">Design</a>
+                        </li>
+                        <li>
+                          <a href="#">wordpress</a>
+                        </li>
+                        <li>
+                          <a href="#">Joomla</a>
+                        </li>
+                        <li>
+                          <a href="#">Html</a>
+                        </li>
+                        <li>
+                          <a href="#">Website</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="single-blog-page">
+                    <div class="left-blog">
+                      <h4>archive</h4>
+                      <ul>
+                        <li>
+                          <a href="#">07 July 2016</a>
+                        </li>
+                        <li>
+                          <a href="#">29 June 2016</a>
+                        </li>
+                        <li>
+                          <a href="#">13 May 2016</a>
+                        </li>
+                        <li>
+                          <a href="#">20 March 2016</a>
+                        </li>
+                        <li>
+                          <a href="#">09 Fabruary 2016</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="single-blog-page">
+                    <div class="left-tags blog-tags">
+                      <div class="popular-tag left-side-tags left-blog">
+                        <h4>popular tags</h4>
+                        <ul>
+                          <li>
+                            <a href="#">Portfolio</a>
+                          </li>
+                          <li>
+                            <a href="#">Project</a>
+                          </li>
+                          <li>
+                            <a href="#">Design</a>
+                          </li>
+                          <li>
+                            <a href="#">Website</a>
+                          </li>
+                          <li>
+                            <a href="#">Joomla</a>
+                          </li>
+                          <li>
+                            <a href="#">Html</a>
+                          </li>
+                          <li>
+                            <a href="#">wordpress</a>
+                          </li>
+                          <li>
+                            <a href="#">Masonry</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+            </div>
+
+              <!-- Listado de Articulos -->
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                
+                <!-- Articulos -->
+                <div class="row">
+
+
+                    {% for post in post_list %}
+                    
+                    {% include "Blog/includes/blog_item.html" with post=post image="true" TRUNCWORDS_COUNT=TRUNCWORDS_COUNT %}
+                    
+                    {% empty %}
+                        <p class="blog-empty">{% trans "No article found." %}</p>
+                    {% endfor %}
+                    
+                    {% if author or archive_date or tagged_entries %}
+                        <p class="blog-back"><a href="{% url 'djangocms_blog:posts-latest' %}">{% trans "Back" %}</a></p>
+                    {% endif %}
+  
+                
+                </div>
+
+                <!-- Paginado -->
+                <div class="row justify-content-center" >
+
+                    <div class="blog-pagination " data-aos="fade-up">
+
+                    
+                        {% if is_paginated %}
+                
+                            <div class="row justify-content-center">
+                                <ul >
+                                
+                                    {% if page_obj.has_previous %}
+                                    <li><a href="?{{ view.page_kwarg }}={{ page_obj.previous_page_number }}"><i class="icofont-rounded-left"></i></a></li>
+                                    {% else %}
+                                    <li class="disabled"><i class="icofont-rounded-left"></i></li>
+                                    {% endif %}
+                    
+                                
+                                    <li class="active"><a>{{ page_obj.number }}</a></li>
+                                    
+                                    
+                                    
+                                    {% if page_obj.has_next %}
+                                    <li><a href="?{{ view.page_kwarg }}={{ page_obj.next_page_number }}"><i class="icofont-rounded-right"></i></a></li>
+                                    {% else %}
+                                    <li class="disabled"><i class="icofont-rounded-right"></i></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                    
+                            <div class="row justify-content-center">
+                                {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ paginator.num_pages }}
+                            </div>
+                        
+                        {% endif %}
+
+                    </div>
+
+                </div>
+          
         
-        {% endif %}
+            </div>
+
+        </div>
+
     </div>
+
+
+    
 </section>
 
 {% endblock %}

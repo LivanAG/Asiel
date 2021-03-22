@@ -1,71 +1,145 @@
 {% load djangocms_blog i18n easy_thumbnails_tags cms_tags %}
 
+<style>
 
-<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+  
+ .entry-meta {
+  margin-bottom: 15px;
+  color: #afa29e;
+}
 
-    <article id="post-{{ post.slug }}" class="post-item entry">
+.entry-meta ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.entry-meta ul li + li {
+  padding-left: 5px;
+}
+
+ .entry-meta i {
+  font-size: 14px;
+  padding-right: 4px;
+}
+
+.entry-meta a {
+  color: #988782;
+  font-size: 14px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.entry-meta li :hover{
+  color: #007bff;
+  
+}
+
+
+
+</style>
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+
+  <div class="single-blog">
+
+    <!-- Imagen -->
+    <div class="single-blog-img">
+      <a href="blog-details.html" >
+
+        {% if image and post.main_image %}
+
+          <img src="{{ post.main_image.url }}"  alt="{{ post.main_image.default_alt_text }}" />
+      
+        {% else %}
+            {% media_images post as previews %}
+
+              {% for preview in previews %}<img src="{{ preview }}" />{% endfor %}
             
-          {% if image and post.main_image %}
-          
-            <div class="entry-img">
-              <img src="{{ post.main_image.url }}" class="img-fluid" alt="{{ post.main_image.default_alt_text }}" />
-            </div>
-            {% else %}
-                {% media_images post as previews %}
-                <div class="blog-visual">
-                  {% for preview in previews %}<img src="{{ preview }}" />{% endfor %}
-                </div>
-            {% endif %}
-         
+        {% endif %}
+        
+      </a>
+    </div>
 
-            <h2 class="entry-title">
-                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-            </h2>
+    
+    
+    <!-- Meta -->
+    <div class="blog-meta row ml-0">
 
-            <div>
-              {% if post.subtitle %}
+      <span class="comments-type mr-3">
+        <i class="fa fa-comment"></i>
+        <a href="#">11 comments</a>
+      </span>
+      <span class="mr-3">
+        {% block blog_meta_date %}
+        {% include "Blog/includes/blog_meta_date.html" %}
+        {% endblock %}
+      </span>
 
-                <p style="font-family: Tahoma, sans-serif;color:#473d3a;font-weight: 500;font-size: 17px;">{{ post.subtitle }}</p>
+      <span class="date-type">
+        {% block blog_meta_author %}
+        {% include "Blog/includes/blog_meta_author.html" %}
+        {% endblock %}
+      </span>
+
+ 
+      
+    </div>
+
+  
+    <!-- Titulo, Subtitulo y Abstract -->
+    <div class="blog-text">
+
+      <!-- Titulo -->
+      <h4>
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+      </h4>
+
+      <!-- Subtitulo-->
+      {% if post.subtitle %}
+
+          <p style="font-family: Tahoma, sans-serif;color:#473d3a;font-weight: 500;font-size: 17px;">{{ post.subtitle }}</p>
               
-              {%endif %}
-            </div>
-           
-        <div class="entry-meta">
-          {% block blog_meta_author %}
-          {% include "Blog/includes/blog_meta_author.html" %}
-          {% endblock %}
-        </div>   
-        
-        <div class="entry-meta">
-          {% block blog_meta_categories %}
-          {% include "Blog/includes/blog_meta_categories.html" %}
-          {% endblock %}
-        </div>
+      {%endif %}
 
-        <div class="entry-meta">
-          {% block blog_meta_tags %}
-          {% include "Blog/includes/blog_meta_tags.html" %}
-          {% endblock %}
-        </div>
+      <!--Abstract -->
+      <p>
+        {% if not TRUNCWORDS_COUNT %}
+
+            {% render_model post "abstract" "" "" "safe" %}
+
+        {% else %}
+
+            {% render_model post "abstract" "" "" "truncatewords_html:TRUNCWORDS_COUNT|safe"  %}
+
+        {% endif %}
+      </p>
 
 
-        <div class="entry-content">
-          
-              <div class="blog-lead">
-                {% if not TRUNCWORDS_COUNT %}
-                    {% render_model post "abstract" "" "" "safe" %}
-                {% else %}
-                    {% render_model post "abstract" "" "" "truncatewords_html:TRUNCWORDS_COUNT|safe"  %}
-                {% endif %}
-              </div>
-              <div class="read-more">
-                <a href="{{ post.get_absolute_url }}">{% trans "read more" %} &raquo;</a>
-              </div>
-        </div>
+    </div>
 
-        
-        
-    </article>
+    <!-- Categorias
+    
+<div>
+
+  <span class="entry-meta">
+    {% block blog_meta_categories %}
+    {% include "Blog/includes/blog_meta_categories.html" %}
+    {% endblock %}
+  </span>
+
+  
+</div>
+-->
+    
+    <span>
+      <a href="{{ post.get_absolute_url }}" class="ready-btn">{% trans "read more" %}</a>
+    </span>
+
+  
+  </div>
 
 </div>
-
