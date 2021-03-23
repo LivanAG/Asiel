@@ -1,0 +1,120 @@
+{% load i18n %}
+{% load comments %}
+{% load comments_xtd %}
+{% load static %}
+{% for item in comments %}
+
+<div class="media">
+
+  <a name="c{{ item.comment.id }}"></a>
+
+  <div class="media-body my-3"  >
+    
+      <div class="comment clearfix" >
+
+        <img src="{% static 'ProbandoBlog/assets/img/comments-2.jpg' %}" class="comment-img  float-left mr-3" alt="">
+        
+        <h5>
+
+            <a>{{ item.comment.name }}</a>
+
+            {% if item.comment.allow_thread and not item.comment.is_removed %}
+
+                <a href="{{ item.comment.get_reply_url }}" class="reply"><i class="icofont-reply"></i> Reply</a>
+            
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <span class="float-right mr-3">
+              {% if not item.comment.is_removed %}
+                {% if perms.comments.can_moderate %}
+                  {% if item.flagged_count %}
+                    <span class="badge badge-danger" title="{% blocktrans count counter=item.flagged_count %}A user has flagged this comment as inappropriate.{% plural %}{{ counter }} users have flagged this comment as inappropriate.{% endblocktrans %}">{{ item.flagged_count }}</span>
+                  {% endif %}
+                {% endif %}
+                {% if allow_flagging and item.flagged %}
+                  <i class="fas fa-flag text-danger" title="{% trans 'comment flagged' %}"></i>
+                {% elif allow_flagging %}
+                  <a class="mutedlink"
+                     href="{% url 'comments-flag' item.comment.pk %}">
+                    <i class="fas fa-flag" title="{% trans 'flag comment' %}"></i>
+                  </a>
+                {% endif %}
+                {% if perms.django_comments_xtd.can_moderate and user.is_staff %}
+                  <a class="mutedlink"
+                     href="{% url 'comments-delete' item.comment.pk %}"><i class="fas fa-trash-alt" title="{% trans 'remove comment' %}"></i></a>
+                {% endif %}
+
+              
+              {% endif %}
+            </span>
+            {% endif %}
+
+        </h5>
+        
+        <time datetime="2020-01-01">{{ item.comment.submit_date }}</time>
+      
+          {% if item.comment.is_removed %}
+
+            <p class="text-muted{% if not allow_feedback and not item.comment.allow_thread %} pb-3{% endif %}"><em>{% trans "This comment has been removed." %}</em></p>
+          
+          {% else %}
+
+          <p>
+            
+            {% include "includes/django_comments_xtd/comment_content.html" with content=item.comment.comment %}
+            <br>
+            {% if allow_feedback and user.is_authenticated %}
+            {% include "includes/django_comments_xtd/user_feedback.html" %}
+            {% endif %}
+
+            {% if item.comment.nested_count != 0 %}
+            <button id="PlegarComentarios{{item.comment.id}}" class="btn btn-outline-secondary btn-sm float-right">Ver {{item.comment.nested_count}} respuestas <i class="icofont-arrow-down"></i></button>
+            {% else %}
+            <span class="small float-right" style="color:#ff5821">Este comentario no tiene respuestas</span>
+            {% endif %}
+          </p>
+
+          
+          {% endif %}
+
+      </div>
+
+      <div id="Comentarios{{item.comment.id}}" class="comment clearfix  ml-5 mt-0" style="display: none;">
+          {% if not item.comment.is_removed and item.children %}
+            {% render_xtdcomment_tree with comments=item.children %}
+          {% endif %}
+      </div>
+
+  </div>
+</div>
+{% endfor %}
+ 
+
+
+
+
+
+
+
+
+
+
+
+<script>
+//onclick= "document.getElementsByClassName('Comentarios{{item.comment.id}}')[0].style.display='block'";
+
+function PlegarRespuestas(){
+  
+  if(document.getElementById('Comentarios{{item.comment.id}}').style.display=='none'){
+    document.getElementById('Comentarios{{item.comment.id}}').style.display='block'
+    document.getElementById('PlegarComentarios{{item.comment.id}}').innerHTML='Ocultar Respuestas <i class="icofont-arrow-up"></i>'
+  }
+  else if(document.getElementById('Comentarios{{item.comment.id}}').style.display=='block'){
+    document.getElementById('Comentarios{{item.comment.id}}').style.display='none'
+    document.getElementById('PlegarComentarios{{item.comment.id}}').innerHTML='Ver {{item.comment.nested_count}} respuestas <i class="icofont-arrow-down"></i>'
+  }
+
+}
+document.getElementById('PlegarComentarios{{item.comment.id}}').onclick=PlegarRespuestas;
+</script>

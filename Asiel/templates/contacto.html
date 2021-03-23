@@ -1,14 +1,128 @@
 {% extends "base.html" %}
-{% load cms_tags %}
+{% load i18n easy_thumbnails_tags menu_tags cms_tags sekizai_tags static %}
 
 {% block title %}{% page_attribute "page_title" %}{% endblock title %}
 
-{% block Breadcrumb_title %}Contacto{% endblock %}
-
-{% block Breadcrumb_desc %} Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. {% endblock %}
 
 {% block content %}
 
-	{% placeholder "content" %}
+	<div style=" height: 70px;">
+	
+	</div>
 
+
+<!-- ======= Contact Section ======= -->
+<div id="contact" class="contact-area" >
+	
+	<div class="contact-inner area-padding">
+	  <div class="contact-overly"></div>
+
+	  <div class="container ">
+
+			<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="section-headline text-center">
+					
+				<h2>{% trans "Contact us" %}</h2>
+				</div>
+			</div>
+			</div>
+
+			<div class="row">
+			<!-- Start contact icon column -->
+			<div class="col-md-4 col-sm-4 col-xs-12">
+				<div class="contact-icon text-center">
+				<div class="single-icon">
+					<i class="fa fa-mobile"></i>
+					<p>
+					Call: +53 5841 99 89<br>
+					<span>Monday-Friday (9am-5pm)</span>
+					</p>
+				</div>
+				</div>
+			</div>
+			<!-- Start contact icon column -->
+			<div class="col-md-4 col-sm-4 col-xs-12">
+				<div class="contact-icon text-center">
+				<div class="single-icon">
+					<i class="fa fa-envelope"></i>
+					<p>
+						
+					Email: asielshuman99@gmail.com<br>
+					<span>Web: www.example.com</span>
+					</p>
+				</div>
+				</div>
+			</div>
+			<!-- Start contact icon column -->
+			<div class="col-md-4 col-sm-4 col-xs-12">
+				<div class="contact-icon text-center">
+				<div class="single-icon">
+					<i class="fa fa-map-marker"></i>
+					<p>
+					Location: A108 Calle 7ma / Calle Aranguren y Calle Canal<br>
+					<span>CU 535022, Cuba</span>
+					</p>
+				</div>
+				</div>
+			</div>
+			</div>
+
+			<div class="row">
+
+					<!-- Formulario-->
+					<div class="col-md-12 col-sm-6 col-xs-12">
+
+						<div class="form contact-form">
+
+							<form action="#" method="post" role="form" class="php-email-form">
+
+									<!-- Nombre -->
+									<div class="form-group">
+									<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+									<div class="validate"></div>
+									</div>
+
+									<!-- Email -->
+									<div class="form-group">
+									<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+									<div class="validate"></div>
+									</div>
+
+									<!-- Asunto -->
+									<div class="form-group">
+									<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+									<div class="validate"></div>
+									</div>
+
+									<!-- Mensaje -->
+									<div class="form-group">
+									<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+									<div class="validate"></div>
+									</div>
+
+									<!-- Validaciones -->
+									<div class="mb-3">
+									<div class="loading">Loading</div>
+									<div class="error-message"></div>
+									<div class="sent-message">Your message has been sent. Thank you!</div>
+									</div>
+
+									<div class="text-center"><button type="submit">Send Message</button></div>
+
+							</form>
+
+						</div>
+
+					</div>
+					<!-- End Formulario -->
+					
+			</div>
+
+	  </div>
+
+	</div>
+
+
+  </div><!-- End Contact Section -->
 {% endblock content %}

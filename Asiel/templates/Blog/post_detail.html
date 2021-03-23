@@ -40,22 +40,31 @@
         </section>
     {% endif %}
 
+
+    <!------------------------------------------ Seccion de Comentarios  -------------------------------------------------------->
+    
     {% if post.enable_comments %}
+
     <div class="blog-comments">
 
+      <!-- Cantidad de comentarios -->
       {% get_comment_count for post as comment_count %}
-      
       <div class="py-4 text-center">
         &nbsp;&sdot;&nbsp;
         {{ comment_count }} comment{{ comment_count|pluralize }}
         ha{{ comment_count|pluralize:"s,ve" }} been posted.
       </div>
-     
+     <!-- END Cantidad de comentarios -->
+
+
+     <!-- Listado de Comentarios -->
       <ul class="media-list">
         {% render_xtdcomment_tree for post allow_feedback  allow_flagging show_feedback  %}
       </ul>
+    <!-- END Listado de comentarios -->
     
-    
+
+    <!-- Formulario de comentarios -->
       <div id="reply-form" class="reply-form">
         <h4>Dejar Comentario</h4>
         <p>Your email address will not be published. Required fields are marked * </p>
@@ -107,8 +116,32 @@
 
         
       </div>
+    <!-- END Formulario de comentarios -->
+
 
     </div><!-- End blog comments -->
+    
     {% endif %}
+
 </article>
 {% endblock content_blog %}
+
+
+{% block extra-js %}
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  crossorigin="anonymous"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+<script>
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip({html: true});
+  });
+</script>
+{% endblock %}

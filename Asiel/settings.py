@@ -277,6 +277,9 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 
+
+#------------------ Configuracion Email--------------------------------------------------------------------------------------
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST="smtp.gmail.com"
 EMAIL_USE_TLS=True
@@ -285,9 +288,16 @@ EMAIL_HOST_USER="frankaranda1960@gmail.com"
 EMAIL_HOST_PASSWORD="aranda@1960"
 DOMAIN = ''
 
+#------------------ END Configuracion Email--------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+#------------------ Configuracion NEWSLETTER--------------------------------------------------------------------------------------
 NEWSLETTER_CONFIRM_EMAIL = True
-
 
 # Amount of seconds to wait between each email. Here 100ms is used.
 NEWSLETTER_EMAIL_DELAY = 0.1
@@ -298,8 +308,40 @@ NEWSLETTER_BATCH_DELAY = 60
 # Number of emails in one batch
 NEWSLETTER_BATCH_SIZE = 100
 
+#------------------ END Configuracion NEWSLETTER--------------------------------------------------------------------------------------
 
+
+
+
+
+
+#------------------ Configuracion Comments--------------------------------------------------------------------------------------
 
 COMMENTS_APP='django_comments_xtd'
 
-COMMENTS_XTD_CONFIRM_EMAIL = True
+COMMENTS_XTD_CONFIRM_EMAIL = False
+
+COMMENTS_XTD_MAX_THREAD_LEVEL =10
+COMMENTS_XTD_LIST_ORDER = ('-thread_id', 'order')  # default is ('thread_id', 'order')
+
+
+COMMENTS_XTD_APP_MODEL_OPTIONS = {
+    'default': {
+        'allow_flagging': True,
+        'allow_feedback': True,
+        'show_feedback': False,
+        'who_can_post': 'all'  # Valid values: 'all', users'
+    }
+}
+#------------------END Configuracion Comments--------------------------------------------------------------------------------------
+
+
+
+
+
+
+BLOG_PLUGIN_TEMPLATE_FOLDERS = (
+    ('plugins', 'Default_template'),    # reads from templates/djangocms_blog/plugins/
+    ('Plugins_barra_nav_blog', 'Barra Navegacion Vertical'),    # reads from templates/djangocms_blog/plugins/
+
+)

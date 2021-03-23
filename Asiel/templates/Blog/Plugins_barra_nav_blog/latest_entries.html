@@ -1,0 +1,37 @@
+{% load i18n %}{% spaceless %}
+<div class="plugin plugin-blog">
+    <div class="blog-latest-entries">
+    {% for post in posts_list %}
+                     
+            <!-- start single post -->
+            <div class="recent-single-post">
+              
+              <div class="post-img">
+                <a href="#">
+                  <img src="{{ post.main_image.url }}"  alt="" style="width: 140px; height: 60px;"/>
+                </a>
+              </div>
+
+            
+              
+              <div class="pst-content">
+
+                <p>
+                    <a href="{{ post.get_absolute_url }}" style="font-weight: bold;"> {{post.get_title}} </a>
+                    
+                </p>
+
+             
+
+              </div>
+
+            </div>
+            <!-- End single post -->
+         
+     
+    {% empty %}
+    <p class="blog-empty">{% trans "No article found." %}</p>
+    {% endfor %}
+    </div>
+</div>
+{% endspaceless %}
