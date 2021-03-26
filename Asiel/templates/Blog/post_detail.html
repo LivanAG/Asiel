@@ -1,127 +1,244 @@
 {% extends "djangocms_blog/base.html" %}
-{% load i18n easy_thumbnails_tags cms_tags comments comments_xtd%}
+{% load i18n easy_thumbnails_tags cms_tags comments comments_xtd static%}
 
 {% block canonical_url %}<link rel="canonical" href="{{ meta.url }}"/>{% endblock canonical_url %}
 {% block title %}{{ post.get_title }}{% endblock %}
 
-{% block content_blog %}{% spaceless %}
+
+{% block content_blog %}
+
 <article id="post-{{ post.slug }}" class="post-item post-detail">
-    <header>
-        <h2>{% render_model post "title" %}</h2>
-        {% if post.subtitle %}
-            <h3>{% render_model post "subtitle" %}</h3>
-        {% endif %}
-        {% block blog_meta %}
-            {% include "djangocms_blog/includes/blog_meta.html" %}
-        {% endblock %}
-    </header>
-    {% if not post.main_image_id %}
-        <div class="blog-visual">{% render_placeholder post.media %}</div>
-    {% else %}
-    <div class="blog-visual">
-        {% thumbnail post.main_image post.full_image_options.size crop=post.full_image_options.crop upscale=post.full_image_options.upscale subject_location=post.main_image.subject_location  as thumb %}
-        <img src="{{ thumb.url }}" alt="{{ post.main_image.default_alt_text }}" width="{{ thumb.width }}" height="{{ thumb.height }}" />
-    </div>
-    {% endif %}
-    {% endspaceless %}
-    {% if post.app_config.use_placeholder %}
-        <div class="blog-content">{% render_placeholder post.content %}</div>
-    {% else %}
-        <div class="blog-content">{% render_model post "post_text" "post_text" "" "safe" %}</div>
-    {% endif %}
-    {% if view.liveblog_enabled %}
-        {% include "liveblog/includes/post_detail.html" %}
-    {% endif %}
-    {% if post.related.exists %}
-        <section class="post-detail-list">
-        {% for related in post.related.all %}
-            {% include "djangocms_blog/includes/blog_item.html" with post=related image="true" TRUNCWORDS_COUNT=TRUNCWORDS_COUNT %}
-        {% endfor %}
-        </section>
-    {% endif %}
-
-
-    <!------------------------------------------ Seccion de Comentarios  -------------------------------------------------------->
     
-    {% if post.enable_comments %}
+    <!-- ======= Blog Page ======= -->
+    <div class="blog-page area-padding">
+      <div class="container">
+        <div class="row">
 
-    <div class="blog-comments">
+          <!-- Barra Lateral -->
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-      <!-- Cantidad de comentarios -->
-      {% get_comment_count for post as comment_count %}
-      <div class="py-4 text-center">
-        &nbsp;&sdot;&nbsp;
-        {{ comment_count }} comment{{ comment_count|pluralize }}
-        ha{{ comment_count|pluralize:"s,ve" }} been posted.
+            <div class="page-head-blog">
+
+              <!-- Articulos Recientes  -->
+              <div class="single-blog-page">
+                <!-- recent start -->
+                <div class="left-blog">
+                  
+                  <h4>recent post</h4>
+                  
+                  {% static_placeholder "Ultimos Articulos" %}
+
+                </div>
+                <!-- recent end -->
+              </div>
+              
+              <!-- Categorias   -->
+              <div class="single-blog-page">
+                <div class="left-blog">
+
+                  {% static_placeholder "Categorias" %}
+           
+                </div>
+              </div>
+
+              <!-- Tags -->
+              <div class="single-blog-page">
+                <div class="left-tags blog-tags">
+                  <div class="popular-tag left-side-tags left-blog">
+                    {% static_placeholder "Tags" %}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+          <!-- End left sidebar -->
+
+
+          <!-- Articulo del blog -->
+          <div class="col-md-8 col-sm-8 col-xs-12">
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <!-- Articulo del blog -->
+                <article class="blog-post-wrapper">
+                  
+                  <!-- Main_Image -->
+                  <div class="post-thumbnail">
+
+                        {% if not post.main_image_id %}
+                            {% render_placeholder post.media %}
+                        {% else %}
+                            <img src="{{ post.main_image.url }}" alt="" />
+                        {% endif %}
+
+                  </div>
+
+                  <!-- Titulo,Subtitulo, Meta, Contenido -->
+                  <div class="post-information">
+
+                    <!-- Titulo y Subtitulo-->
+                    <h2>{% render_model post "title" %}</h2>
+                    {% if post.subtitle %}
+                        <h3>{% render_model post "subtitle" %}</h3>
+                    {% endif %}
+
+                    <!-- Meta -->
+                    {% block blog_meta %}
+                    <div class="entry-meta">
+
+                      <!-- Autro -->
+                      <span class="author-meta"><i class="fa fa-user"></i>{% include "Blog/includes/include_x/blog_meta_author.html" %}</span>
+                      
+                      <!-- Fecha -->
+                      <span class="ml-3"><i class="fa fa-clock-o"></i> {% include "Blog/includes/include_x/blog_meta_date.html" %}</span>
+                      
+                      <!-- Tags -->
+                      <span class="ml-3"><i class="fa fa-tags"></i>{% include "Blog/includes/include_x/blog_meta_tags.html" %}</span>
+                      
+                      <!-- Cantidad de comentarios -->
+                      {% get_comment_count for post as comment_count %}
+                      <span class="ml-1"><i class="fa fa-comments-o"></i> <a >{{ comment_count }} comments</a></span>
+
+                    </div>
+                    {% endblock %}
+                    
+                    <!--------Contenido -------->
+                    <div class="entry-content">
+                      {% if post.app_config.use_placeholder %}
+                      <div class="blog-content">{% render_placeholder post.content %}</div>
+                      {% else %}
+                      <div class="blog-content">{% render_model post "post_text" "post_text" "" "safe" %}</div>
+                      {% endif %}
+                    </div>
+
+
+                  </div>
+                </article>
+
+                <div class="clear"></div>
+
+                {% if post.enable_comments %}
+                {% get_comment_count for post as comment_count %}
+                
+                    
+                      <!-- Seccion de Comentarios -->
+                      <div class="single-post-comments">
+
+                        {% if comment_count != 0%}
+                        <!-- Area de Comentarios -->
+                        <div class="comments-area">
+
+                            <!-- Cantidad de Comentarios -->
+                            <div class="comments-heading">
+                              
+                              <h3>{{ comment_count }} comments</h3>
+
+                            </div>
+                            
+                            <!-- Lista de Comentarios -->
+                            <div class="comments-list">
+
+                                <!-- Listado de Comentarios -->
+                                  <ul class="media-list">
+                                  
+                                    {% render_xtdcomment_tree for post allow_feedback  allow_flagging show_feedback  %}
+                                    
+                                  </ul>
+                                <!-- END Listado de comentarios -->
+
+
+                            </div>
+
+                        </div>
+                        {% else %}
+                        <p>Este articulo aun no tiene comentarios. Se el primero en dejar tu opinion!</p>
+                      {% endif%}
+                  
+                        <!-- Formulario de comentarios -->
+                          <div id="reply-form" class="comment-respond">
+                            <h3 class="comment-reply-title">Dejar Comentario</h3>
+                            <span class="email-notes">Your email address will not be published. Required fields are marked * </span>
+
+                            {% get_comment_form for post as form %}
+                            <form action="{% comment_form_target %}" method="post">
+                              {% csrf_token %}
+
+                              <div class="row">
+
+                              {{form.content_type}}
+                              {{form.object_pk}}
+                              {{form.timestamp}}
+                              {{form.security_hash}}
+                              {{form.reply_to}}
+                              
+
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <p>Name *</p>
+                                <input type="text" name="name" maxlength="50" class="form-control"  required="" id="id_name">
+                              </div>
+
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <p>Email *</p>
+                                <input type="email" name="email" class="form-control"  required="" id="id_email">
+                              </div>
+
+                              
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <p>Website</p>
+                                <input type="url" name="url" class="form-control" id="id_url">
+                              </div>
+
+                              <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
+                                <p>Your Comment:</p>
+                                <textarea id="message-box" name="comment" class="form-control" cols="30" rows="10" maxlength="3000" required="" id="id_comment"></textarea>
+                              </div>
+
+                              <p style="display:none;">
+                                <label for="id_honeypot">Si introduce algo en este campo su comentario será tratado como spam:</label> <input type="text" name="honeypot" id="id_honeypot">
+                              </p>
+
+                              <input type="hidden" name="next" value="{% url 'comments-xtd-sent' %}" /> 
+                            
+
+                              <div class="custom-control custom-checkbox mt-3 ml-4 ">
+                                <input type="checkbox" name="followup" id="id_followup" class="custom-control-input">
+                                <label for="id_followup" class="custom-control-label">&nbsp;Notifíqueme subsiguientes comentarios</label>
+                              </div>
+
+                              
+                              <input type="submit"  name="post" class="submit-post mt-5" value="Enviar">
+                              
+
+                              <div class="alert alert-danger" data-comment-element="errors" hidden="">
+                              </div>
+
+
+                              </div>
+                            </form>
+
+                            
+                          </div>
+                        <!-- END Formulario de comentarios -->
+
+                      </div>
+                      <!-- END Seccion de Comentarios -->
+                      
+                
+                {% endif %}
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
       </div>
-     <!-- END Cantidad de comentarios -->
-
-
-     <!-- Listado de Comentarios -->
-      <ul class="media-list">
-        {% render_xtdcomment_tree for post allow_feedback  allow_flagging show_feedback  %}
-      </ul>
-    <!-- END Listado de comentarios -->
-    
-
-    <!-- Formulario de comentarios -->
-      <div id="reply-form" class="reply-form">
-        <h4>Dejar Comentario</h4>
-        <p>Your email address will not be published. Required fields are marked * </p>
-
-        {% get_comment_form for post as form %}
-        <form action="{% comment_form_target %}" method="post">
-          {% csrf_token %}
-
-          {{form.content_type}}
-          {{form.object_pk}}
-          {{form.timestamp}}
-          {{form.security_hash}}
-          {{form.reply_to}}
-          <input type="url" hidden name="url" id="id_url">
-
-          <div class="row">
-            <div class="col-md-6 form-group">
-              <input type="text" name="name" maxlength="50" class="form-control" placeholder="Your Name*" required="" id="id_name">
-            </div>
-            <div class="col-md-6 form-group">
-              <input type="email" name="email" class="form-control" placeholder="Your Email*" required="" id="id_email">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col form-group">
-              <textarea name="comment" class="form-control" placeholder="Your Comment*" maxlength="3000" required="" id="id_comment"></textarea>
-            </div>
-          </div>
-
-          <p style="display:none;">
-            <label for="id_honeypot">Si introduce algo en este campo su comentario será tratado como spam:</label> <input type="text" name="honeypot" id="id_honeypot">
-          </p>
-
-          <input type="hidden" name="next" value="{% url 'comments-xtd-sent' %}" /> 
-        
-
-          <div class="custom-control custom-checkbox mb-5">
-            <input type="checkbox" name="followup" id="id_followup" class="custom-control-input">
-            <label for="id_followup" class="custom-control-label">&nbsp;Notifíqueme subsiguientes comentarios</label>
-          </div>
-
-          <p class="submit">
-            <input type="submit" class="btn btn-primary" name="post" class="submit-post" value="Enviar">
-          </p>
-
-          <div class="alert alert-danger" data-comment-element="errors" hidden="">
-          </div>
-        </form>
-
-        
-      </div>
-    <!-- END Formulario de comentarios -->
-
-
-    </div><!-- End blog comments -->
-    
-    {% endif %}
+    </div><!-- End Blog Page -->
 
 </article>
 {% endblock content_blog %}
@@ -144,4 +261,12 @@
     $('[data-toggle="tooltip"]').tooltip({html: true});
   });
 </script>
+{% endblock %}
+
+
+
+
+{% block js %}
+
+
 {% endblock %}

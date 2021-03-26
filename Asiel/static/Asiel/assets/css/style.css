@@ -2277,7 +2277,7 @@ span.email-notes {
   margin-bottom: 5px;
 }
 
-.comment-respond input[type=text], .comment-respond input[type=email] {
+.comment-respond input[type=text], .comment-respond input[type=email], .comment-respond input[type=url] {
   border: 1px solid #e5e5e5;
   border-radius: 0;
   height: 32px;

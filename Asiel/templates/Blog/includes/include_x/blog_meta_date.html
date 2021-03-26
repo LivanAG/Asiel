@@ -1,0 +1,14 @@
+{% load i18n easy_thumbnails_tags cms_tags %}
+
+
+
+    {% if post.date_published %}
+    
+        {{ post.date_published|date:"DATE_FORMAT" }}
+    
+    {% endif %}
+    {% if post.date_featured %}
+    
+        {{ post.date_featured|date:"DATE_FORMAT"}}
+  
+    {% endif %}
