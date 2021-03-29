@@ -21,7 +21,7 @@ class FormRegistro(UserCreationForm):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         for i in self.visible_fields():
-            i.field.widget.attrs['class'] = 'form-control'
+            i.field.widget.attrs['class'] = 'input--style-6'
 
 
     first_name=forms.CharField(

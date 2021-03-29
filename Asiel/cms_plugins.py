@@ -3,13 +3,29 @@ from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.translation import gettext as _
 from .models import *
+from django.conf import settings
 
-'''
 @plugin_pool.register_plugin
-class BannerHomePlugin(CMSPluginBase):
+class NavBarPlugin(CMSPluginBase):
     model = CMSPlugin
-    render_template = "Plugins/bannerhome.html"
-'''
+    render_template = "Plugins/barnav.html"
+
+    def render(self, context, instance, placeholder):
+        cadena = settings.NOMBRE_DEL_BLOG[1:]
+        letra_inicial = settings.NOMBRE_DEL_BLOG[0]
+        context = super().render(context, instance, placeholder)
+        context['sitio']=cadena
+        context['letra_inicial']=letra_inicial
+        return context
+
+
+@plugin_pool.register_plugin
+class HomeSeccionPlugin(CMSPluginBase):
+    model = HomeSeccionPluginModel
+    allow_children = True
+    render_template = "Plugins/Home_Seccion.html"
+
+
 
 @plugin_pool.register_plugin
 class BannerHomePlugin2(CMSPluginBase):
@@ -38,5 +54,13 @@ class BannerBlog(CMSPluginBase):
 class FooterPlugin(CMSPluginBase):
     model = CMSPlugin
     render_template = "Plugins/footer.html"
+
+    def render(self, context, instance, placeholder):
+        cadena = settings.NOMBRE_DEL_BLOG[1:]
+        letra_inicial = settings.NOMBRE_DEL_BLOG[0]
+        context = super().render(context, instance, placeholder)
+        context['sitio']=cadena
+        context['letra_inicial']=letra_inicial
+        return context
 
 

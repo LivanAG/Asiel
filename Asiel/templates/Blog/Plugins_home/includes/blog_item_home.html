@@ -1,0 +1,91 @@
+{% load i18n cms_tags comments comments_xtd static%}
+<style>
+
+  
+ .entry-meta {
+  margin-bottom: 15px;
+  color: #afa29e;
+}
+
+.entry-meta ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.entry-meta ul li + li {
+  padding-left: 5px;
+}
+
+ .entry-meta i {
+  font-size: 14px;
+  padding-right: 4px;
+}
+
+.entry-meta a {
+  color: #988782;
+  font-size: 14px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.entry-meta li :hover{
+  color: #007bff;
+  
+}
+
+
+
+</style>
+
+
+  <div class="single-blog">
+
+    <div class="single-blog-img">
+      <a >
+        <img src="{{ post.main_image.url }}"  alt="{{ post.main_image.default_alt_text }}" style="height: 200px;width: 300px;"/>
+      </a>
+    </div>
+
+    <div class="blog-meta">
+
+      <span>
+        <i class="fa fa-comment"></i>
+        {% get_comment_count for post as comment_count %}
+        <a >{{ comment_count }} comments</a>
+      
+      </span>
+
+      <span class="ml-3">
+        <i class="fa fa-calendar pr-2"></i>
+        {% include "Blog/includes/include_x/blog_meta_date.html" %}
+
+      </span>
+      
+    </div>
+    
+    <div class="blog-text">
+        <h4>
+          <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        </h4>
+
+          <!--Abstract -->
+          <p>
+          {% if not TRUNCWORDS_COUNT %}
+
+              {% render_model post "abstract" "" "" "safe" %}
+
+          {% else %}
+
+              {% render_model post "abstract" "" "" "truncatewords_html:TRUNCWORDS_COUNT|safe"  %}
+
+          {% endif %}
+          </p>
+    </div>
+
+    <span>
+      <a href="{{ post.get_absolute_url }}" class="ready-btn">{% trans "read more" %}</a>
+    </span>
+  </div>

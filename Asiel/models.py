@@ -34,3 +34,8 @@ class BannerBlogPluginModel(CMSPlugin):
         null=True,
         on_delete=models.SET_NULL,
     )
+
+
+
+class HomeSeccionPluginModel(CMSPlugin):
+    titulo = models.CharField(max_length=100)

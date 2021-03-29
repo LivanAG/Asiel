@@ -341,7 +341,12 @@ COMMENTS_XTD_APP_MODEL_OPTIONS = {
 
 
 BLOG_PLUGIN_TEMPLATE_FOLDERS = (
-    ('plugins', 'Default_template'),    # reads from templates/djangocms_blog/plugins/
-    ('Plugins_barra_nav_blog', 'Barra Navegacion Vertical'),    # reads from templates/djangocms_blog/plugins/
+    ('plugins', 'Default_template'),    
+    ('Plugins_barra_nav_blog', 'Barra Navegacion Vertical'),    
+    ('Plugins_home', 'Home'),
 
 )
+
+
+
+NOMBRE_DEL_BLOG = 'Shuman'

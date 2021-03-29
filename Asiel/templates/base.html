@@ -55,27 +55,7 @@
    
     {% cms_toolbar %}
 
-            <!-- ======= Header ======= -->
-        <header id="header" class="fixed-top">
-            <div class="container d-flex">
-
-            <div class="logo mr-auto">
-                <h1 class="text-light"><a href="index.html"><span>e</span>Business</a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-            </div>
-
-            <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                    {% show_menu 0 100 100 100 %}
-        
-                   
-                </ul>
-            </nav><!-- .nav-menu -->
-
-            </div>
-        </header><!-- End Header -->
-            
+        {% static_placeholder 'navbar' %} 
         
         <!-- ======= Header Blog y Home ======= -->
         {% block hero %}{% placeholder 'BreadCrumb' %}{% endblock hero %}
