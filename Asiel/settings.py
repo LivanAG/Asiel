@@ -144,6 +144,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'registration',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.sitemaps',
@@ -180,7 +181,7 @@ INSTALLED_APPS = [
     'djangocms_video',
     'widget_tweaks',
     'Asiel',
-    'Apps.Login',
+    
 
 
     # django-newsletter y dependencias
@@ -336,8 +337,11 @@ COMMENTS_XTD_APP_MODEL_OPTIONS = {
 #------------------END Configuracion Comments--------------------------------------------------------------------------------------
 
 
+#------------------ Configuracion Django Registrations--------------------------------------------------------------------------------------
 
+ACCOUNT_ACTIVATION_DAYS = 7
 
+#------------------ END Configuracion Django Registrations--------------------------------------------------------------------------------------
 
 
 BLOG_PLUGIN_TEMPLATE_FOLDERS = (

@@ -159,72 +159,130 @@
                         <p>Este articulo aun no tiene comentarios. Se el primero en dejar tu opinion!</p>
                       {% endif%}
                   
+                      {% if user.is_authenticated%}
                         <!-- Formulario de comentarios -->
-                          <div id="reply-form" class="comment-respond">
-                            <h3 class="comment-reply-title">Dejar Comentario</h3>
-                            <span class="email-notes">Your email address will not be published. Required fields are marked * </span>
+                        <div id="reply-form" class="comment-respond">
+                          <h3 class="comment-reply-title">Dejar Comentario</h3>
 
-                            {% get_comment_form for post as form %}
-                            <form action="{% comment_form_target %}" method="post">
-                              {% csrf_token %}
+                          {% get_comment_form for post as form %}
+                          <form action="{% comment_form_target %}" method="post">
+                            {% csrf_token %}
 
-                              <div class="row">
+                            <div class="row">
 
-                              {{form.content_type}}
-                              {{form.object_pk}}
-                              {{form.timestamp}}
-                              {{form.security_hash}}
-                              {{form.reply_to}}
-                              
-
-                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <p>Name *</p>
-                                <input type="text" name="name" maxlength="50" class="form-control"  required="" id="id_name">
-                              </div>
-
-                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <p>Email *</p>
-                                <input type="email" name="email" class="form-control"  required="" id="id_email">
-                              </div>
-
-                              
-                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <p>Website</p>
-                                <input type="url" name="url" class="form-control" id="id_url">
-                              </div>
-
-                              <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
-                                <p>Your Comment:</p>
-                                <textarea id="message-box" name="comment" class="form-control" cols="30" rows="10" maxlength="3000" required="" id="id_comment"></textarea>
-                              </div>
-
-                              <p style="display:none;">
-                                <label for="id_honeypot">Si introduce algo en este campo su comentario será tratado como spam:</label> <input type="text" name="honeypot" id="id_honeypot">
-                              </p>
-
-                              <input type="hidden" name="next" value="{% url 'comments-xtd-sent' %}" /> 
+                            {{form.content_type}}
+                            {{form.object_pk}}
+                            {{form.timestamp}}
+                            {{form.security_hash}}
+                            {{form.reply_to}}
                             
 
-                              <div class="custom-control custom-checkbox mt-3 ml-4 ">
-                                <input type="checkbox" name="followup" id="id_followup" class="custom-control-input">
-                                <label for="id_followup" class="custom-control-label">&nbsp;Notifíqueme subsiguientes comentarios</label>
-                              </div>
+                          
+                            <input type="text" name="name" maxlength="50" hidden class="form-control" value="{{user.username}}"  required="" id="id_name">
+                        
+                            <input type="email" name="email" class="form-control"  hidden required="" value="{{user.email}}" id="id_email">
+                          
+                            <input type="url" name="url" class="form-control" hidden value="{{user.url}}" id="id_url">
+                
 
-                              
-                              <input type="submit"  name="post" class="submit-post mt-5" value="Enviar">
-                              
+                            <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
+                              <p>Your Comment:</p>
+                              <textarea id="message-box" name="comment" class="form-control" cols="30" rows="10" maxlength="3000" required="" id="id_comment"></textarea>
+                            </div>
 
-                              <div class="alert alert-danger" data-comment-element="errors" hidden="">
-                              </div>
+                            <p style="display:none;">
+                              <label for="id_honeypot">Si introduce algo en este campo su comentario será tratado como spam:</label> <input type="text" name="honeypot" id="id_honeypot">
+                            </p>
 
+                            <input type="hidden" name="next" value="{% url 'comments-xtd-sent' %}" /> 
+                          
 
-                              </div>
-                            </form>
+                            <div class="custom-control custom-checkbox mt-3 ml-4 ">
+                              <input type="checkbox" name="followup" id="id_followup" class="custom-control-input">
+                              <label for="id_followup" class="custom-control-label">&nbsp;Notifíqueme subsiguientes comentarios</label>
+                            </div>
 
                             
-                          </div>
+                            <input type="submit"  name="post" class="submit-post mt-5" value="Enviar">
+                            
+
+                            <div class="alert alert-danger" data-comment-element="errors" hidden="">
+                            </div>
+
+
+                            </div>
+                          </form>
+
+                          
+                        </div>
                         <!-- END Formulario de comentarios -->
+                        {% else %}
+                        <!-- Formulario de comentarios -->
+                        <div id="reply-form" class="comment-respond">
+                          <h3 class="comment-reply-title">Dejar Comentario</h3>
+                          <span class="email-notes">Your email address will not be published. Required fields are marked * </span>
 
+                          {% get_comment_form for post as form %}
+                          <form action="{% comment_form_target %}" method="post">
+                            {% csrf_token %}
+
+                            <div class="row">
+
+                            {{form.content_type}}
+                            {{form.object_pk}}
+                            {{form.timestamp}}
+                            {{form.security_hash}}
+                            {{form.reply_to}}
+                            
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                              <p>Name *</p>
+                              <input type="text" name="name" maxlength="50" class="form-control"  required="" id="id_name">
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                              <p>Email *</p>
+                              <input type="email" name="email" class="form-control"  required="" id="id_email">
+                            </div>
+
+                            
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                              <p>Website</p>
+                              <input type="url" name="url" class="form-control" id="id_url">
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
+                              <p>Your Comment:</p>
+                              <textarea id="message-box" name="comment" class="form-control" cols="30" rows="10" maxlength="3000" required="" id="id_comment"></textarea>
+                            </div>
+
+                            <p style="display:none;">
+                              <label for="id_honeypot">Si introduce algo en este campo su comentario será tratado como spam:</label> <input type="text" name="honeypot" id="id_honeypot">
+                            </p>
+
+                            <input type="hidden" name="next" value="{% url 'comments-xtd-sent' %}" /> 
+                          
+
+                            <div class="custom-control custom-checkbox mt-3 ml-4 ">
+                              <input type="checkbox" name="followup" id="id_followup" class="custom-control-input">
+                              <label for="id_followup" class="custom-control-label">&nbsp;Notifíqueme subsiguientes comentarios</label>
+                            </div>
+
+                            
+                            <input type="submit"  name="post" class="submit-post mt-5" value="Enviar">
+                            
+
+                            <div class="alert alert-danger" data-comment-element="errors" hidden="">
+                            </div>
+
+
+                            </div>
+                          </form>
+
+                          
+                        </div>
+                        <!-- END Formulario de comentarios -->
+                        {% endif%}
                       </div>
                       <!-- END Seccion de Comentarios -->
                       

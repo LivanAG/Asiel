@@ -10,8 +10,11 @@ admin.autodiscover()
 
 urlpatterns = [
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
-    path('',include('Apps.Login.urls')),
+ 
 
+    # urls django_registration
+    path('accounts/', include('registration.backends.default.urls')),
+    
     # urls django_comments_xtd 
     path(r'^comments/', include('django_comments_xtd.urls')),
 

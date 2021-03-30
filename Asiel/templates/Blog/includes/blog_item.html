@@ -1,4 +1,4 @@
-{% load djangocms_blog i18n easy_thumbnails_tags cms_tags %}
+{% load djangocms_blog i18n easy_thumbnails_tags cms_tags comments comments_xtd%}
 
 <style>
 
@@ -71,7 +71,8 @@
 
       <span class="comments-type mr-3">
         <i class="fa fa-comment"></i>
-        <a href="#">11 comments</a>
+        {% get_comment_count for post as comment_count %}
+        <a >{{ comment_count }} comments</a>
       </span>
       <span class="mr-3">
         {% block blog_meta_date %}
