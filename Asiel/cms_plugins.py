@@ -25,7 +25,10 @@ class HomeSeccionPlugin(CMSPluginBase):
     allow_children = True
     render_template = "Plugins/Home_Seccion.html"
 
-
+@plugin_pool.register_plugin
+class HomeNewsletterPlugin(CMSPluginBase):
+    model = CMSPlugin
+    render_template = "Plugins/newsletter.html"
 
 @plugin_pool.register_plugin
 class BannerHomePlugin2(CMSPluginBase):

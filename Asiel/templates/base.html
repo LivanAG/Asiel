@@ -66,128 +66,21 @@
 
   
 
-        <!-- ======= About Section ======= -->
-    <div id="about" class="about-area area-padding">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="section-headline text-center">
-                <h2>About eBusiness</h2>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <!-- single-well start-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <div class="well-left">
-                <div class="single-well">
-                  <a href="#">
-                    <img src="{% static 'Asiel/assets/img/about/1.jpg' %}" alt="">
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- single-well end-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <div class="well-middle">
-                <div class="single-well">
-                  <a href="#">
-                    <h4 class="sec-head">project Maintenance</h4>
-                  </a>
-                  <p>
-                    Redug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure aspernatur sit adipisci quaerat unde at nequeRedug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure
-                  </p>
-                  <ul>
-                    <li>
-                      <i class="fa fa-check"></i> Interior design Package
-                    </li>
-                    <li>
-                      <i class="fa fa-check"></i> Building House
-                    </li>
-                    <li>
-                      <i class="fa fa-check"></i> Reparing of Residentail Roof
-                    </li>
-                    <li>
-                      <i class="fa fa-check"></i> Renovaion of Commercial Office
-                    </li>
-                    <li>
-                      <i class="fa fa-check"></i> Make Quality Products
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- End col-->
-          </div>
-        </div>
-      </div><!-- End About Section -->
+
+        
 
 
-        <!-- ======= Suscribe Section ======= -->
-        <div class="suscribe-area">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs=12">
-                        
-                        {% if user.is_authenticated%}
-                        <div class="suscribe-text text-center">
-                        
-                            <div class="row justify-content-center mb-2"><h3>Nuestro Boletin de Noticias</h3></div>
-                            
-                            <div class="row justify-content-center"><span>Aun no te has subscrito a nuestro boletin de noticias, hazlo para que no te pierdas ninguno de nuestros posts</span></div>
-                            
-                            <div class="row justify-content-center mt-4">
-                        
-                                <form enctype="multipart/form-data" method="post" class="footer-newsletter" action="/%5Enewsletter/">
-                                    {% csrf_token %}
-                                    <div class="row">
-                                        <input type="email" name="email_field" hidden value="{{user.email}}" required="" id="id_email_field">
-                                        <button id="id_submit" name="submit" value="Subscribe" type="submit" style="width: 100%; padding: 10px;">Ver boletines de noticias y opciones</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                        {% else %}
-                        <div class="suscribe-text text-center">
-                        
-                          <div class="row justify-content-center mb-2"><h3>Nuestro Boletin de Noticias</h3></div>
-                          
-                          <div class="row justify-content-center"><span>Aun no te has subscrito a nuestro boletin de noticias, hazlo para que no te pierdas ninguno de nuestros posts</span></div>
-                          
-                          <div class="row justify-content-center mt-4">
-                      
-                              <form enctype="multipart/form-data" method="post" class="footer-newsletter" action="/%5Enewsletter/boletin/subscribe/">
-                                  {% csrf_token %}
-                                  <div class="row">
-                                      <input type="email" name="email_field" required="" id="id_email_field">
-                                      <button id="id_submit" name="submit" value="Subscribe" type="submit">Subscribe</button>
-                                  </div>
-                              </form>
-                          </div>
-
-                        </div>
-                        {% endif %}
-                        
-                    </div>
-                </div>
-            </div>
-        </div><!-- End Suscribe Section -->
-
-
-        <div class="container ">
-         
+       
  
   
-               
-            {% block content %}  
+      <div class="container "></div>
+          
+        {% block content %}  
             
          
         {% endblock content %}
 
-    
-        </div>
+
 
  
 

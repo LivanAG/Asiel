@@ -28,6 +28,10 @@
                     <td><i class="icofont-tack-pin mr-2"></i><a href="{% url "newsletter_detail" newsletter.slug %}" style="font-weight: bold;">{{ newsletter.title }}</a></td>
                 </tr>
                 {% endfor %}
+
+                <tr>
+                  <td><i class="icofont-arrow-left mr-2"></i><a href="/" style="font-weight: bold;">{% trans "Back" %}</a></td>
+                </tr>
               </table>
                
                   

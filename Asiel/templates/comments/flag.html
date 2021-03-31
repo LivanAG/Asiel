@@ -1,14 +1,14 @@
 {% extends "django_comments_xtd/base.html" %}
-{% load i18n static%}
+{% load i18n static %}
 {% load comments_xtd %}
 
-{% block title %}{% trans "Confirm your opinion" %}{% endblock %}
+{% block title %}{% trans "Flag comment" %}{% endblock %}
 
 {% block header %}
+<a href="{{ comment.content_object.get_absolute_url }}">{{ comment.content_object }}</a>
 {% endblock %}
 
 {% block content %}
-
 
 
 <div class="limiter">
@@ -19,15 +19,11 @@
             
               <!--Titulo-->
               <span class="login100-form-title p-b-32 text-center" style="font-size: 20px;">
-                {% if already_disliked_it %}
-                {% trans "You didn't like this comment, do you want to change it?" %}
-                {% else %}
-                {% trans "Do you dislike this comment?" %}
-                {% endif %}
+                {% trans "Flag this comment?" %}
               </span>
 
              
-              <p class="lead text-center mb-4">{% trans "Please, confirm your opinion about the comment." %}</p>
+              <p class="lead text-center mb-4">{% trans "Click on the flag button to mark the following comment as inappropriate." %}</p>
 
               <div class="row">
                 <div class="offset-lg-1 col-lg-10">
@@ -64,33 +60,26 @@
               </div>
 
               <div class="row">
-                <div class="offset-lg-1 col-lg-10">
-                  {% if already_disliked_it %}
-                  <div class="alert alert-warning text-center">
-                    {% trans 'Click on the "withdraw" button if you want to withdraw your negative opinion on this comment.' %}
-                  </div>
-                  {% endif %}
-                  <form action="." method="post" class="form-horizontal">{% csrf_token %}
-                    <input type="hidden" name="next" value="{{ comment.get_absolute_url }}">
+                <div class="offset-md-1 col-md-10">
+                  <form action="." method="post">{% csrf_token %}
+                    <input type="hidden" name="next" value="{{ comment.get_absolute_url }}"/>
                     <div class="form-group">
                       <div class="text-center">
-                        {% if already_disliked_it %}
-                        <input type="submit" name="submit" class="btn btn-warning" value="{% trans 'Withdraw' %}"/>
-                        {% else %}
-                        <input type="submit" name="submit" class="btn btn-primary" value="{% trans 'I dislike it' %}"/>
-                        {% endif %}
+                        <input type="submit" name="submit" class="btn btn-danger" value="{% trans "Flag" %}"/>
                         <a class="btn btn-secondary" href="{{ comment.get_absolute_url }}">{% trans "cancel" %}</a>
                       </div>
                     </div>
+                  </form>
                 </div>
               </div>
-                  
+             
+    
+
 
       </div>
   </div>
 </div>
 
 
-<div id="dropDownSelect1"></div>
 
 {% endblock %}
