@@ -1652,7 +1652,7 @@ preview-2
   padding: 10px 0;
 }
 
-.suscribe-text h3 {
+.suscribe-text h3{
   color: #fff;
   display: inline-block;
   font-size: 20px;
@@ -1661,6 +1661,17 @@ preview-2
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+
+.suscribe-text span{
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 
 .sus-btn {
   background: #fff none repeat scroll 0 0;
@@ -1677,6 +1688,34 @@ preview-2
 }
 
 .sus-btn:hover {
+  background: #3EC1D5 none repeat scroll 0 0;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+
+
+.footer-newsletter input[type="email"] {
+  border: 0;
+  padding: 6px 8px;
+  width: 65%;
+  border-radius: 4px 0 0 4px;
+}
+
+ .footer-newsletter button[type="submit"] {
+  background: #ffffff;
+  border: 2px solid #fff;
+  border-radius: 0 4px 4px 0;
+  width: 35%;
+  padding: 6px 0;
+  text-align: center;
+  color: #31a7b9;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.footer-newsletter button[type="submit"]:hover {
+
   background: #3EC1D5 none repeat scroll 0 0;
   border: 2px solid #fff;
   color: #fff;

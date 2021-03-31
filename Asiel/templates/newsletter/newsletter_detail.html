@@ -5,26 +5,55 @@
 {% block title %}{% trans "Newsletter detail" %}{% endblock title %}
 
 {% block body %}
-<table>
-    <tr>
-        <th>{% trans "Newsletter" %} {{ object.title }}</th>
-    </tr>
-    <tr>
-        <td><a href="{% url "newsletter_subscribe_request" object.slug %}">{% trans "Subscribe" %}</a></td>
-    </tr>
-    {% if not user.is_authenticated %}
-    <tr>
-        <td><a href="{% url "newsletter_update_request" object.slug %}">{% trans "Update" %}</a></td>
-    </tr>
-    {% endif %}
-    <tr>
-        <td><a href="{% url "newsletter_unsubscribe_request" object.slug %}">{% trans "Unsubscribe" %}</a></td>
-    </tr>
-    <tr>
-        <td><a href="{% url "newsletter_archive" object.slug %}">{% trans "Archive" %}</a></td>
-    </tr>
-    <tr>
-        <td><a href="../">{% trans "Back to list" %}</a></td>
-    </tr>
-</table>
+
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+  
+            <form class="login100-form validate-form flex-sb flex-w">
+                {%csrf_token%}
+  
+                <!--Titulo-->
+                <span class="login100-form-title p-b-32" style="font-size: 20px;">
+                    {% trans "Newsletter detail" %}
+                </span>
+  
+                <span class="txt1 p-b-11">
+  
+                    <table>
+                      
+                        <tr>
+                            <td class="mb-4"> <i class="icofont-check-circled"></i> <a href="{% url "newsletter_subscribe_request" object.slug %}">{% trans "Subscribe" %}</a></td>
+                        </tr>
+                        {% if not user.is_authenticated %}
+                        <tr>
+                            <td><a href="{% url "newsletter_update_request" object.slug %}">{% trans "Update" %}</a></td>
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td class="mb-4"><i class="icofont-close-circled"></i> <a href="{% url "newsletter_unsubscribe_request" object.slug %}">{% trans "Unsubscribe" %}</a></td>
+                        </tr>
+            
+                        <tr>
+                            <td><i class="icofont-arrow-left"></i><a href="../">{% trans "Back to list" %}</a></td>
+                        </tr>
+                    </table>
+                 
+                    
+               
+                </span>
+                    
+               
+       
+            </form>
+  
+  
+        </div>
+    </div>
+  </div>
+  
+  
+  <div id="dropDownSelect1"></div>
+  
 {% endblock body %}

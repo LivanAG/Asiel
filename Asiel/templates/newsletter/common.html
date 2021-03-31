@@ -1,15 +1,78 @@
-{% load i18n %}
+{% load i18n static%}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>{% block title %}{% trans "Newsletter" %}{% endblock title %}</title>
+
+<!--===============================================================================================-->	
+<link rel="icon" type="image/png" href="{% static 'Asiel/login/Login_v14/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->	
+<link href="{% static 'Asiel/assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Asiel/login/Login_v14/css/main.css' %}">
+<!--===============================================================================================-->
+
+<style>
+
+    .contenedor {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    
+    
+    .alert_error {
+      position: relative;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid transparent;
+      border-radius: 0.25rem;
+    }
+    
+    .alert_error-danger {
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+    
+    .alert_error-danger hr {
+      border-top-color: #f1b0b7;
+    }
+    
+    .alert_error-danger .alert-link {
+      color: #491217;
+    }
+    </style>
         {% block header %}
         {% endblock header %}
+
+        
     </head>
 
     <body>
         {% block body %}
         {% endblock body %}
+
+    
     </body>
 </html>
