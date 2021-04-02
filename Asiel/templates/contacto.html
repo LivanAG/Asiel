@@ -23,7 +23,9 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="section-headline text-center">
 					
-				<h2>{% trans "Contact us" %}</h2>
+					
+				<h2>{% trans "Contact us" %} </h2>
+				
 				</div>
 			</div>
 			</div>
@@ -73,19 +75,23 @@
 					<!-- Formulario-->
 					<div class="col-md-12 col-sm-6 col-xs-12">
 
-						<div class="form contact-form">
+						<div class="">
 
-							<form action="#" method="post" role="form" class="php-email-form">
+							<form method="post"  class="php-email-form">
+								{%csrf_token%}
+								{%if user.is_authenticated%}
+								
+									<input type="text" hidden name="id" id="id" value="{{user.id}}" />
 
 									<!-- Nombre -->
 									<div class="form-group">
-									<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+									<input type="text" name="name" class="form-control" hidden value="{{user.username}}" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
 									<div class="validate"></div>
 									</div>
 
 									<!-- Email -->
 									<div class="form-group">
-									<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+									<input type="email" class="form-control" name="email"  hidden value="{{user.email}}" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
 									<div class="validate"></div>
 									</div>
 
@@ -97,7 +103,7 @@
 
 									<!-- Mensaje -->
 									<div class="form-group">
-									<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+									<textarea class="form-control" name="message" id="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
 									<div class="validate"></div>
 									</div>
 
@@ -107,9 +113,36 @@
 									<div class="error-message"></div>
 									<div class="sent-message">Your message has been sent. Thank you!</div>
 									</div>
+									
+										<!--Parrafo Error -->
+										<div class="form-group my-5 p-0">
+  
+											<p class="parrafoError m-5 text-center"></p>   
+					  
+										</div>
+	
+	
+										<!--Parrafo OK -->
+										<div class="form-group my-5 p-0">
+	  
+											<p class="parrafoOK m-5 text-center"></p>   
+					  
+										</div>
+										
+										<div class="text-center"><input type="submit" value="Send Message"></div>
+									{% else %}
+										
+									<h4 class="text-center mt-3"> Para contactar con nosotros a través de esta sección. Debe Iniciar Sesión en nuestra página.</h4>
+							
+									<div class="text-center mt-3"><a href="/accounts/login/" class="btn btn-outline-info px-3 py-2 mt-4" >Log in</a></div>
+							
+									{% endif %}
 
-									<div class="text-center"><button type="submit">Send Message</button></div>
+								
 
+
+									
+									
 							</form>
 
 						</div>
@@ -118,11 +151,90 @@
 					<!-- End Formulario -->
 					
 			</div>
-
 	  </div>
 
 	</div>
 
 
   </div><!-- End Contact Section -->
+
+
 {% endblock content %}
+
+
+
+
+
+{%block js%}
+<script>
+
+function MensajeError(obj){
+var html = '<ul class="p-0">';
+
+html += '</ul>';
+
+if(typeof obj == "string"){
+
+        $('.parrafoError').html('<span class="alert alert-danger" >'+ obj +'</span>');
+
+}
+else{
+
+        $.each(obj,function(clave,valor){
+            html+='<li class="my-4" style="list-style: none;" ><span class="alert alert-danger" >'+ valor +'</span> </li>';
+        }) 
+        
+        $('.parrafoError').html(html);
+  
+     
+    }
+  
+}
+
+
+
+
+
+    //Ajax para el envio de datos a nuestra vista
+    $("form").on("submit",function(e){
+		
+        e.preventDefault();
+		var parametros =$(this).serializeArray();
+		console.log(parametros)
+			$.ajax({
+                    url:'/Enviar_correo/',
+                    type:"POST",
+					data:parametros,
+                    dataType:'json',
+                   
+					
+    
+                    }).done(function(data) {
+
+                       if(!data.hasOwnProperty('error')){
+						$('#subject').val('')
+						$('#message').val('')
+						$('.parrafoError').html('')
+
+						$('.parrafoOK').html('<span class="Alert alert-success p-4" > Su mensaje ha sido enviado con éxito!</span>');
+			
+                        return false;
+                       }
+                       else{
+						$('.parrafoOK').html('');
+
+						MensajeError(data.error);
+                        console.log(data.error)
+                        
+                        
+                       }
+                        
+                       
+                    })
+
+    })
+
+    
+</script>
+
+{% endblock js %}

@@ -5,13 +5,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
-
+from .views import *
 admin.autodiscover()
 
 urlpatterns = [
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
  
-
+    path('Enviar_correo/', EnviarEmail.as_view() ,name='enviar'),
     # urls django_registration
     path('accounts/', include('registration.backends.default.urls')),
     
