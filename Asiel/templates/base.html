@@ -10,8 +10,7 @@
          <!-- Bootstrap CSS Files -->
          <link href="{% static 'Asiel/bootstrap-4/css/bootstrap.min.css' %}" rel="stylesheet">
 
-
-    
+        
          <!-- Favicons -->
          <link href="{% static 'Asiel/assets/img/favicon.png' %}" rel="icon">
          <link href="{% static 'Asiel/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
@@ -35,6 +34,7 @@
          <!-- Template Main CSS File -->
          <link href="{% static 'Asiel/assets/css/style.css' %}" rel="stylesheet">
 
+         
 
 
        <style>
@@ -49,6 +49,16 @@
             color: #3EC1D5 !important;
         }
 
+    
+        #CookielawBanner {
+            background: rgb(209, 203, 203);
+            bottom: 0;
+            height: 140px;
+            padding: 13px 0 4px;
+            position: fixed;
+            width: 100%;
+            z-index: 5000;
+        }
        </style>
 
         {% render_block "css" %}
@@ -60,24 +70,51 @@
       
    
     {% cms_toolbar %}
+     
 
-        {% static_placeholder 'navbar' %} 
+              <!-- ======= Header ======= -->
+              <header id="header" class="fixed-top">
+                <div class="container d-flex">
+    
+                <div class="logo mr-auto">
+                    <h1 class="text-light"><a><span>S</span>human</a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                   
+                </div>
+    
+                <nav class="nav-menu d-none d-lg-block">
+                    <ul>
+                        {% if user.is_authenticated %}
+                        <li class="mr-5">
+                            <a style="color: white;"><i class="fa fa-user"></i> <span class="ml-1" style="font-weight: bold;">{{user.username}}</span></a>
+                        </li>
+                        {% endif %}
+                        {% show_menu 0 100 100 100 %}
+                    
+                    </ul>
+                </nav><!-- .nav-menu -->
+    
+                </div>
+            </header><!-- End Header -->
         
+
         <!-- ======= Header Blog y Home ======= -->
         {% block hero %}{% placeholder 'BreadCrumb' %}{% endblock hero %}
         <!-- End Header -->
 
   
+        
+   
+        
+        {% load cookielaw_tags %}
+        {% cookielaw_banner %}
+    
+
+       
 
 
         
-
-
-       
- 
-  
-      <div class="container "></div>
-          
         {% block content %}  
             
          
@@ -99,9 +136,11 @@
         <script src="{% static 'Asiel/bootstrap-4/js/bootstrap.bundle.min.js' %}"></script>
 
 
-      
-        <!-- Vendor JS Files         <script src="{% static 'Asiel/assets/vendor/php-email-form/validate.js' %}"></script>
--->
+        <!-- Cookies -->
+        <script src="{% static 'Asiel/cookielaw/js/cookielaw.js' %}"></script>
+
+
+        <!-- Vendor JS Files -->
         <script src="{% static 'Asiel/assets/vendor/jquery/jquery.min.js' %}"></script>
         <script src="{% static 'Asiel/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'Asiel/assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>

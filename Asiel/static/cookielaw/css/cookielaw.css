@@ -1,0 +1,10 @@
+
+        #CookielawBanner {
+            background: rgb(190, 186, 186); 
+            bottom: 0;
+            height: 150px;
+            padding: 13px 0 4px;
+            position: fixed;
+            width: 100%;
+            z-index: 5000;
+            }

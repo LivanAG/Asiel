@@ -67,3 +67,14 @@ class FooterPlugin(CMSPluginBase):
         return context
 
 
+@plugin_pool.register_plugin
+class AboutMePlugin(CMSPluginBase):
+    model = AboutMePluginModel
+    render_template = "Plugins/about_me.html"
+    name = _("About Me Plugin")
+    cache = False
+    allow_children = True
+    def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
+        return context
+

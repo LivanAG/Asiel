@@ -33,10 +33,6 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-
-
-
-
 ROOT_URLCONF = 'Asiel.urls'
 
 
@@ -182,7 +178,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'Asiel',
     
-
+    # Cookies
+    'cookielaw',
 
     # django-newsletter y dependencias
     'sorl.thumbnail',
@@ -354,3 +351,10 @@ BLOG_PLUGIN_TEMPLATE_FOLDERS = (
 
 
 NOMBRE_DEL_BLOG = 'Shuman'
+
+
+
+
+FILER_ENABLE_PERMISSIONS=False
+
+FILER_ALLOW_REGULAR_USERS_TO_ADD_ROOT_FOLDERS=True

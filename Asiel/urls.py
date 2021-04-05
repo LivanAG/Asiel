@@ -12,6 +12,8 @@ urlpatterns = [
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
  
     path('Enviar_correo/', EnviarEmail.as_view() ,name='enviar'),
+
+
     # urls django_registration
     path('accounts/', include('registration.backends.default.urls')),
     

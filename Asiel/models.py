@@ -21,8 +21,6 @@ class BannerHomerPluginModel(CMSPlugin):
     imagen3 = FilerImageField(related_name="Imagen_3", blank=True,null=True,on_delete=models.SET_NULL)
 
 
-
-
 class BannerBlogPluginModel(CMSPlugin):
     titulo = models.CharField(max_length=100)
 
@@ -36,6 +34,18 @@ class BannerBlogPluginModel(CMSPlugin):
     )
 
 
-
 class HomeSeccionPluginModel(CMSPlugin):
     titulo = models.CharField(max_length=100)
+
+
+class AboutMePluginModel(CMSPlugin):
+
+    imagen = FilerImageField(
+        verbose_name=_("Imagen"),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    titulo = models.CharField(max_length=100)
+    
+
