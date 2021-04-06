@@ -1,0 +1,51 @@
+<!-- ======= Suscribe Section ======= -->
+<div class="suscribe-area">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs=12">
+                
+                {% if user.is_authenticated%}
+                <div class="suscribe-text text-center">
+                
+                    <div class="row justify-content-center mb-2"><h3>Nuestro Boletin de Noticias</h3></div>
+                    
+                    <div class="row justify-content-center"><span>Aun no te has subscrito a nuestro boletin de noticias, hazlo para que no te pierdas ninguno de nuestros posts</span></div>
+                    
+                    <div class="row justify-content-center mt-4">
+                
+                        <form enctype="multipart/form-data" method="post" class="footer-newsletter" action="/%5Enewsletter/">
+                            {% csrf_token %}
+                            <div class="row">
+                                <input type="email" name="email_field" hidden value="{{user.email}}" required="" id="id_email_field">
+                                <button id="id_submit" name="submit" value="Subscribe" type="submit" style="width: 100%; padding: 10px;">Ver boletines de noticias y opciones</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                {% else %}
+                <div class="suscribe-text text-center">
+                
+                  <div class="row justify-content-center mb-2"><h3>Nuestro Boletin de Noticias</h3></div>
+                  
+                  <div class="row justify-content-center"><span>Aun no te has subscrito a nuestro boletin de noticias, hazlo para que no te pierdas ninguno de nuestros posts</span></div>
+                  
+                  <div class="row justify-content-center mt-4">
+              
+                      <form enctype="multipart/form-data" method="post" class="footer-newsletter" action="/%5Enewsletter/boletin/subscribe/">
+                          {% csrf_token %}
+                          <div class="row">
+                              <input type="email" name="email_field" required="" id="id_email_field">
+                              <button id="id_submit" name="submit" value="Subscribe" type="submit">Subscribe</button>
+                          </div>
+                      </form>
+                  </div>
+
+                </div>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</div><!-- End Suscribe Section -->

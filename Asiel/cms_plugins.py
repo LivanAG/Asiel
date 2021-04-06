@@ -78,3 +78,13 @@ class AboutMePlugin(CMSPluginBase):
         context = super().render(context, instance, placeholder)
         return context
 
+
+
+@plugin_pool.register_plugin
+class NewsLetterNavBarBlogPlugin(CMSPluginBase):
+    model = CMSPlugin
+    render_template = "Plugins/newsletter_barra_nav_blog.html"
+
+    def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
+        return context
