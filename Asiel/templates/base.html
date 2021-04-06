@@ -59,6 +59,32 @@
             width: 100%;
             z-index: 5000;
         }
+
+
+        .header-social-links {
+        padding-left: 14px;
+        margin-left: 20px;
+        border-left: 1px solid #c4c4c4;
+        }
+
+        .header-social-links a {
+        color: #a0a0a0;
+        padding-left: 6px;
+        display: inline-block;
+        line-height: 1px;
+        transition: 0.3s;
+        }
+
+        .header-social-links a:hover {
+        color: #3EC1D5 !important;
+        }
+
+        @media (max-width: 768px) {
+        .header-social-links {
+            padding: 0 48px 0 0;
+            border-left: 0;
+        }
+        }
        </style>
 
         {% render_block "css" %}
@@ -85,16 +111,25 @@
     
                 <nav class="nav-menu d-none d-lg-block">
                     <ul>
-                        {% if user.is_authenticated %}
-                        <li class="mr-5">
-                            <a style="color: white;"><i class="fa fa-user"></i> <span class="ml-1" style="font-weight: bold;">{{user.username}}</span></a>
-                        </li>
-                        {% endif %}
+                      
                         {% show_menu 0 100 100 100 %}
                     
                     </ul>
                 </nav><!-- .nav-menu -->
-    
+
+
+                {% if user.is_authenticated %}
+                <div class="ml-2 mt-2">
+                    <a style="color: white;"><i class="fa fa-user"></i> <span class="ml-1" style="font-weight: bold;">{{user.username}}</span></a>
+                </div>
+                {% endif %}
+                
+                    <div class="header-social-links mt-2">
+                        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+                    </div>
                 </div>
             </header><!-- End Header -->
         
