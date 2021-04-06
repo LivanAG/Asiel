@@ -43,9 +43,6 @@ WSGI_APPLICATION = 'Asiel.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -317,7 +314,7 @@ NEWSLETTER_BATCH_SIZE = 100
 
 COMMENTS_APP='django_comments_xtd'
 
-COMMENTS_XTD_CONFIRM_EMAIL = False
+COMMENTS_XTD_CONFIRM_EMAIL = True
 
 COMMENTS_XTD_MAX_THREAD_LEVEL =10
 COMMENTS_XTD_LIST_ORDER = ('-thread_id', 'order')  # default is ('thread_id', 'order')
@@ -341,6 +338,12 @@ ACCOUNT_ACTIVATION_DAYS = 7
 #------------------ END Configuracion Django Registrations--------------------------------------------------------------------------------------
 
 
+
+
+
+#------------------ Configuracion Blog--------------------------------------------------------------------------------------
+
+
 BLOG_PLUGIN_TEMPLATE_FOLDERS = (
     ('plugins', 'Default_template'),    
     ('Plugins_barra_nav_blog', 'Barra Navegacion Vertical'),    
@@ -349,12 +352,34 @@ BLOG_PLUGIN_TEMPLATE_FOLDERS = (
 )
 
 
+#------------------ END Configuracion Blog--------------------------------------------------------------------------------------
 
-NOMBRE_DEL_BLOG = 'Shuman'
 
 
+
+#------------------ Configuracion Filer--------------------------------------------------------------------------------------
 
 
 FILER_ENABLE_PERMISSIONS=False
 
 FILER_ALLOW_REGULAR_USERS_TO_ADD_ROOT_FOLDERS=True
+
+#------------------ END Configuracion Filer--------------------------------------------------------------------------------------
+
+
+
+
+#------------------ END Configuracion Django Registration--------------------------------------------------------------------------------------
+
+
+REGISTRATION_FORM = 'Asiel.forms.CustomForm'
+#------------------ Configuracion Django Registration--------------------------------------------------------------------------------------
+
+
+
+#------------------ Configuracion OTRAS--------------------------------------------------------------------------------------
+
+
+NOMBRE_DEL_BLOG = 'Shuman'
+
+#------------------ END Configuracion OTRAS--------------------------------------------------------------------------------------
