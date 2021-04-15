@@ -3,11 +3,12 @@
 <html>
 
     <head>
-        <title>{% block title %}This is my new project home page{% endblock title %}</title>
+        <title>{% block title %}Blog Shuman| Home Page{% endblock title %}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
-
-         <!-- Bootstrap CSS Files -->
+    
+         <!-- Bootstrap CSS Files        <meta name="description" content="Esto es un blog de percusion bla bla bla para sd a sdf jisd smdf ismf ier fsmid scifc">
+-->
          <link href="{% static 'Asiel/bootstrap-4/css/bootstrap.min.css' %}" rel="stylesheet">
 
         
@@ -64,7 +65,7 @@
         .header-social-links {
         padding-left: 14px;
         margin-left: 20px;
-        border-left: 1px solid #c4c4c4;
+        
         }
 
         .header-social-links a {
@@ -103,7 +104,7 @@
                 <div class="container d-flex">
     
                 <div class="logo mr-auto">
-                    <h1 class="text-light"><a><span>S</span>human</a></h1>
+                    <h2 class="text-light"><a><span>S</span>human</a></h2>
                     <!-- Uncomment below if you prefer to use an image logo -->
                     <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
                    
@@ -139,17 +140,6 @@
         <!-- End Header -->
 
   
-        
-   
-        
-        {% load cookielaw_tags %}
-        {% cookielaw_banner %}
-    
-
-       
-
-
-        
         {% block content %}  
             
          
@@ -158,7 +148,9 @@
 
 
  
-
+        {% load cookielaw_tags %}
+        {% cookielaw_banner %}
+    
         {% static_placeholder 'footer' %}
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
         <div id="preloader"></div>

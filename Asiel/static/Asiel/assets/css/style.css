@@ -244,7 +244,7 @@ div#preloader {
   padding: 10px 0;
 }
 
-#header .logo h1 {
+#header .logo h2 {
   font-size: 36px;
   margin: 0;
   padding: 0;
@@ -252,11 +252,11 @@ div#preloader {
   font-weight: bold;
 }
 
-#header .logo h1 span {
+#header .logo h2 span {
   color: #3ec1d5;
 }
 
-#header .logo h1 a, #header .logo h1 a:hover {
+#header .logo h2 a, #header .logo h2 a:hover {
   color: #fff;
   text-decoration: none;
 }
@@ -273,7 +273,7 @@ div#preloader {
     padding: 10px 0;
     background: rgba(0, 0, 0, 0.8);
   }
-  #header .logo h1 {
+  #header .logo h2 {
     font-size: 28px;
     padding: 4px 0;
   }
@@ -2128,7 +2128,7 @@ preview-2
 /*--------------------------------------------------------------
 # Blog Details
 --------------------------------------------------------------*/
-.post-information h2 {
+.post-information h1 {
   color: #363636;
   font-size: 22px;
   text-transform: uppercase;

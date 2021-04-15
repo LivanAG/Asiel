@@ -195,6 +195,10 @@ INSTALLED_APPS = [
     # django_comments_xtd y dependencias
     'django_comments_xtd',
     'django_comments',
+
+    # django-check-seo
+    "django_check_seo",
+    
 ]
 
 LANGUAGES = (
@@ -383,3 +387,21 @@ REGISTRATION_FORM = 'Asiel.forms.CustomForm'
 NOMBRE_DEL_BLOG = 'Shuman'
 
 #------------------ END Configuracion OTRAS--------------------------------------------------------------------------------------
+
+
+
+#------------------ END Configuracion SEO--------------------------------------------------------------------------------------
+DJANGO_CHECK_SEO_FORCE_HTTP = True
+
+
+DJANGO_CHECK_SEO_SETTINGS  =  { 
+    "content_words_number" :  [ 300 ,  600 ], 
+    "internal_links" :  1 , 
+    "external_links" :  1 , 
+    "meta_title_length" :  [ 1 ,  40 ], 
+    "meta_description_length" :  [ 50 ,  160 ], 
+    "keywords_in_first_words" :  50 , 
+    "max_link_depth" :  3 , 
+    "max_url_length" :  70 , 
+}
+#------------------ END Configuracion SEO--------------------------------------------------------------------------------------
