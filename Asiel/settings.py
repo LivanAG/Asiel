@@ -14,7 +14,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '$b=azy(g2retcx!1%po^b!n=&$*4tgc$l-%=v259zaf55%h)_i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+ALLOWED_HOSTS = [
+'https://shuman-blog.herokuapp.com',
+'localhost',
+'127.0.0.1']
 
 ALLOWED_HOSTS = []
 
@@ -405,3 +411,7 @@ DJANGO_CHECK_SEO_SETTINGS  =  {
     "max_url_length" :  70 , 
 }
 #------------------ END Configuracion SEO--------------------------------------------------------------------------------------
+
+
+# Activa Django-Heroku.
+django_heroku.settings(locals())
