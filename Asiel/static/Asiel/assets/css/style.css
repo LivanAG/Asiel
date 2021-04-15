@@ -695,7 +695,6 @@ preview-1
 ---------------------------------------- */
 .preview-1 .nivoSlider {
   position: relative;
-  background: url(../lib/nivo-slider/img/loading.gif) no-repeat 50% 50%;
 }
 
 .preview-1 .nivoSlider img {
@@ -719,7 +718,6 @@ preview-1
   display: inline-block;
   width: 22px;
   height: 22px;
-  background: url(../lib/nivo-slider/img/bullets.png) no-repeat;
   text-indent: -9999px;
   border: 0;
   margin: 0 2px;
@@ -733,7 +731,6 @@ preview-1
   display: block;
   width: 30px;
   height: 30px;
-  background: url(../lib/nivo-slider/img/arrows.png) no-repeat;
   text-indent: -9999px;
   border: 0;
   opacity: 0;
@@ -992,24 +989,7 @@ preview-2
   overflow: hidden;
 }
 
-.team-member::before {
-  background: rgba(0, 0, 0, 0) url("../img/team/team01.jpg") repeat scroll 0 0;
-  content: "";
-  display: block;
-  height: 100%;
-  left: 0;
-  margin-right: -15px;
-  padding: 10px;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: -1;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top center;
-  transition: 5s;
-  transform: scale(1);
-}
+
 
 .team-member:hover.team-member::before {
   transform: scale(1.2);
