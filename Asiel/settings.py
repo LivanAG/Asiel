@@ -92,7 +92,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-SITE_ID = 2
+SITE_ID = 0
 
 
 TEMPLATES = [
