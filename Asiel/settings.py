@@ -85,14 +85,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'staticfiles')
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'Asiel', 'static'),
-)
 SITE_ID = 2
 
 
@@ -411,7 +404,10 @@ DJANGO_CHECK_SEO_SETTINGS  =  {
     "max_url_length" :  70 , 
 }
 #------------------ END Configuracion SEO--------------------------------------------------------------------------------------
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = "/static/"
 
 
 # Activa Django-Heroku.
 django_heroku.settings(locals())
+
