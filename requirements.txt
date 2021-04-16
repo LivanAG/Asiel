@@ -1,6 +1,6 @@
 gunicorn
 django-heroku
-
+whitenoise
 django-widget-tweaks
 django-cms>=3.8,<3.9
 djangocms-admin-style>=2.0,<3.0

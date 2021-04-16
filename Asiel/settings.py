@@ -92,8 +92,7 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 '''
 STATICFILES_DIRS = (
     os.path.join(DATA_DIR, 'static'),
-    #os.path.join(DATA_DIR, 'media'),
-    #os.path.join(BASE_DIR, 'static'),
+
 )
 '''
 
@@ -139,6 +138,8 @@ MIDDLEWARE = [
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
+    # whitenoise
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware'
 ]
 
@@ -208,6 +209,8 @@ INSTALLED_APPS = [
 
     # django-check-seo
     "django_check_seo",
+
+    
     
 ]
 
@@ -416,6 +419,7 @@ DJANGO_CHECK_SEO_SETTINGS  =  {
 }
 #------------------ END Configuracion SEO--------------------------------------------------------------------------------------
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Activa Django-Heroku.
 django_heroku.settings(locals())

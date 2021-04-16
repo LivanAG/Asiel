@@ -15,9 +15,6 @@ urlpatterns = [
     path('Enviar_correo/', EnviarEmail.as_view() ,name='enviar'),
 
 
-    # urls django-check-seo
-    
-
     # urls django_registration
     path('accounts/', include('registration.backends.default.urls')),
     
