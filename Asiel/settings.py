@@ -16,6 +16,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
+import dropbox
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -82,6 +83,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+DROPBOX_OAUTH2_TOKEN = 'sl.AvUAJJGwbYl3K2K1GgyWWw02F_NcmqrWorkVi9kQPxVozgyGXJGCJEapB1aW5U4su7hJ-1RR6r8Wj8oDqTm0GLuL7yXtpaCaR0epdC1Gj7Hk785nVzvj9zhhC5l7kMiNZRkU9pA'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
@@ -210,6 +217,7 @@ INSTALLED_APPS = [
     # django-check-seo
     "django_check_seo",
 
+    'storages',
     
     
 ]
@@ -419,8 +427,6 @@ DJANGO_CHECK_SEO_SETTINGS  =  {
 }
 #------------------ END Configuracion SEO--------------------------------------------------------------------------------------
 
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
