@@ -88,11 +88,11 @@ USE_TZ = True
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
-drop_dir = 'https://www.dropbox.com/home/Aplicaciones/Asiel%20Blog'
+#drop_dir = 'https://www.dropbox.com/home/Aplicaciones/Asiel%20Blog'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT =  '/www.dropbox.com/home/Aplicaciones/Asiel%20Blog/'
+MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 
