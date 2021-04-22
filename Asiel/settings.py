@@ -84,24 +84,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-DROPBOX_OAUTH2_TOKEN = 'sl.AvUAJJGwbYl3K2K1GgyWWw02F_NcmqrWorkVi9kQPxVozgyGXJGCJEapB1aW5U4su7hJ-1RR6r8Wj8oDqTm0GLuL7yXtpaCaR0epdC1Gj7Hk785nVzvj9zhhC5l7kMiNZRkU9pA'
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+
+
+#DROPBOX_OAUTH2_TOKEN = 'sl.AvUAJJGwbYl3K2K1GgyWWw02F_NcmqrWorkVi9kQPxVozgyGXJGCJEapB1aW5U4su7hJ-1RR6r8Wj8oDqTm0GLuL7yXtpaCaR0epdC1Gj7Hk785nVzvj9zhhC5l7kMiNZRkU9pA'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
-'''
 
-STATICFILES_DIRS = (
-    os.path.join(DATA_DIR, 'static'),
-
-)
-'''
 
 SITE_ID = 2
 
@@ -216,11 +211,18 @@ INSTALLED_APPS = [
 
     # django-check-seo
     "django_check_seo",
-
+    
     'storages',
-    
-    
 ]
+
+
+
+
+#DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+
+
+
+
 
 LANGUAGES = (
     ## Customize this
@@ -388,6 +390,31 @@ BLOG_PLUGIN_TEMPLATE_FOLDERS = (
 FILER_ENABLE_PERMISSIONS=False
 
 FILER_ALLOW_REGULAR_USERS_TO_ADD_ROOT_FOLDERS=True
+
+
+FILER_STORAGES = {
+    'public': {
+        'main': {
+            'ENGINE': 'filer.storage.PublicFileSystemStorage',
+            'OPTIONS': {
+                'location': MEDIA_ROOT,
+                'base_url': MEDIA_URL,
+            },
+            'UPLOAD_TO': 'filer.utils.generate_filename.randomized',
+            'UPLOAD_TO_PREFIX': 'filer_public',
+        },
+        'thumbnails': {
+            'ENGINE': 'filer.storage.PublicFileSystemStorage',
+            'OPTIONS': {
+                'location':MEDIA_ROOT,
+                'base_url': MEDIA_URL,
+            },
+            
+        },
+    },
+  
+}
+
 
 #------------------ END Configuracion Filer--------------------------------------------------------------------------------------
 
