@@ -93,6 +93,7 @@ DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
+#MEDIA_ROOT =  '/www.dropbox.com/home/Aplicaciones/Asiel%20Blog/'
 STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 
