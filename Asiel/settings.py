@@ -1,6 +1,6 @@
 import os  # isort:skip
 gettext = lambda s: s
-DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+
 """
 Django settings for Asiel project.
 
@@ -18,7 +18,6 @@ import os
 import django_heroku
 import dropbox
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$b=azy(g2retcx!1%po^b!n=&$*4tgc$l-%=v259zaf55%h)_i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
 'https://shuman-blog.herokuapp.com',
@@ -87,13 +86,13 @@ USE_TZ = True
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-
-
-#DROPBOX_OAUTH2_TOKEN = 'sl.AvUAJJGwbYl3K2K1GgyWWw02F_NcmqrWorkVi9kQPxVozgyGXJGCJEapB1aW5U4su7hJ-1RR6r8Wj8oDqTm0GLuL7yXtpaCaR0epdC1Gj7Hk785nVzvj9zhhC5l7kMiNZRkU9pA'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+drop_dir = 'https://www.dropbox.com/home/Aplicaciones/Asiel%20Blog'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
+MEDIA_ROOT =  '/www.dropbox.com/home/Aplicaciones/Asiel%20Blog/'
 STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 
@@ -141,7 +140,7 @@ MIDDLEWARE = [
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     # whitenoise
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware'
 ]
 
@@ -218,7 +217,7 @@ INSTALLED_APPS = [
 
 
 
-#DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+
 
 
 
@@ -385,12 +384,18 @@ BLOG_PLUGIN_TEMPLATE_FOLDERS = (
 
 
 #------------------ Configuracion Filer--------------------------------------------------------------------------------------
+DROPBOX_OAUTH2_TOKEN = '1EsWTmpuLSUAAAAAAAAAAcXv1CjDNcDOrrVe2PIXu6-DU8WMXZfWDL3wug3JsqKX'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 
+dbx = dropbox.Dropbox (DROPBOX_OAUTH2_TOKEN)
+
+
+
+#print(dbx.users_get_current_account ())
 
 FILER_ENABLE_PERMISSIONS=False
 
 FILER_ALLOW_REGULAR_USERS_TO_ADD_ROOT_FOLDERS=True
-
 
 FILER_STORAGES = {
     'public': {
