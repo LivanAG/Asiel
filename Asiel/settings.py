@@ -423,6 +423,7 @@ FILER_STORAGES = {
                 #'location':MEDIA_ROOT,
                 #'base_url': MEDIA_URL,
             },
+            'UPLOAD_TO_PREFIX': 'filer_public_thumbnails',
             
         },
     },
