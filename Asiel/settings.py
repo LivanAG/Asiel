@@ -17,6 +17,8 @@ from pathlib import Path
 import os
 import django_heroku
 import dropbox
+
+from dropbox import common,users,users_common
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 
@@ -27,7 +29,7 @@ import dropbox
 SECRET_KEY = '$b=azy(g2retcx!1%po^b!n=&$*4tgc$l-%=v259zaf55%h)_i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
 'https://shuman-blog.herokuapp.com',
@@ -88,13 +90,9 @@ USE_TZ = True
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
-#drop_dir = 'https://www.dropbox.com/home/Aplicaciones/Asiel%20Blog'
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-#MEDIA_ROOT =  '/www.dropbox.com/home/Aplicaciones/Asiel%20Blog/'
-STATIC_ROOT = os.path.join(DATA_DIR, 'static')
+
+
 
 
 
@@ -212,7 +210,7 @@ INSTALLED_APPS = [
     # django-check-seo
     "django_check_seo",
     
-    'storages',
+ 
 ]
 
 
@@ -222,6 +220,21 @@ INSTALLED_APPS = [
 
 
 
+DROPBOX_OAUTH2_TOKEN = '1EsWTmpuLSUAAAAAAAAAAcXv1CjDNcDOrrVe2PIXu6-DU8WMXZfWDL3wug3JsqKX'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+#DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+dbx = dropbox.Dropbox (DROPBOX_OAUTH2_TOKEN)
+DROPBOX_ROOT_PATH = '/Aplicaciones/Asiel Blog/'
+#print(dbx.users_get_current_account())
+#print(dbx.users_get_space_usage())
+
+
+
+STATIC_URL = '/static/'
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
+STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 
 LANGUAGES = (
@@ -385,14 +398,9 @@ BLOG_PLUGIN_TEMPLATE_FOLDERS = (
 
 
 #------------------ Configuracion Filer--------------------------------------------------------------------------------------
-DROPBOX_OAUTH2_TOKEN = '1EsWTmpuLSUAAAAAAAAAAcXv1CjDNcDOrrVe2PIXu6-DU8WMXZfWDL3wug3JsqKX'
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-
-dbx = dropbox.Dropbox (DROPBOX_OAUTH2_TOKEN)
 
 
 
-#print(dbx.users_get_current_account ())
 
 FILER_ENABLE_PERMISSIONS=False
 
@@ -401,19 +409,19 @@ FILER_ALLOW_REGULAR_USERS_TO_ADD_ROOT_FOLDERS=True
 FILER_STORAGES = {
     'public': {
         'main': {
-            'ENGINE': 'filer.storage.PublicFileSystemStorage',
+            'ENGINE': DEFAULT_FILE_STORAGE,
             'OPTIONS': {
-                'location': MEDIA_ROOT,
-                'base_url': MEDIA_URL,
+                #'location': MEDIA_ROOT,
+                #'base_url': MEDIA_URL,
             },
-            'UPLOAD_TO': 'filer.utils.generate_filename.randomized',
-            'UPLOAD_TO_PREFIX': 'filer_public',
+            #'UPLOAD_TO': 'filer.utils.generate_filename.randomized',
+            #'UPLOAD_TO_PREFIX': 'filer_public',
         },
         'thumbnails': {
-            'ENGINE': 'filer.storage.PublicFileSystemStorage',
+            'ENGINE': DEFAULT_FILE_STORAGE,
             'OPTIONS': {
-                'location':MEDIA_ROOT,
-                'base_url': MEDIA_URL,
+                #'location':MEDIA_ROOT,
+                #'base_url': MEDIA_URL,
             },
             
         },
