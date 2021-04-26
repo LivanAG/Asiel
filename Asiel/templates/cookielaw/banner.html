@@ -1,11 +1,36 @@
 {% load i18n %}
+<style>
+/* Large Mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  #CookielawBanner{
+    padding-bottom: 150px;
+  }
+  #texto{
+      
+      font-size: 10px;
+      
+  }
+}
+/* small mobile :320px. */
+@media (max-width: 767px) {
+  #CookielawBanner{
+    padding-bottom: 200px;
+  }
+  #texto{
+      
+      font-size: 10px;
+      
+  }
+}
+
+</style>
 
 <div id="CookielawBanner">
     <div class="container">
         <h6>{% trans "COOKIE_INFO_HEADER" %}</h6>
         <p>
             <a class="btn btn-primary pull-right" href="javascript:Cookielaw.createCookielawCookie();">{% trans "COOKIE_INFO_OK" %}</a>
-            {% trans "COOKIE_INFO_PARA" %}
+            <p id="texto">{% trans "COOKIE_INFO_PARA" %}</p>
         </p>
     </div>
 </div>

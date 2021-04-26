@@ -509,6 +509,7 @@ div#preloader {
 
 .slider-content {
   padding: 180px 60px;
+  margin-top: 40px;
 }
 
 .nivo-caption::after {

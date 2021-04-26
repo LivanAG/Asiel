@@ -222,12 +222,11 @@ INSTALLED_APPS = [
 
 DROPBOX_OAUTH2_TOKEN = '1EsWTmpuLSUAAAAAAAAAAcXv1CjDNcDOrrVe2PIXu6-DU8WMXZfWDL3wug3JsqKX'
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-#DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 
 dbx = dropbox.Dropbox (DROPBOX_OAUTH2_TOKEN)
 DROPBOX_ROOT_PATH = '/media/'
-#print(dbx.users_get_current_account())
-#print(dbx.users_get_space_usage())
+
 
 
 
