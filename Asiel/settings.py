@@ -32,7 +32,9 @@ SECRET_KEY = '$b=azy(g2retcx!1%po^b!n=&$*4tgc$l-%=v259zaf55%h)_i'
 DEBUG = False
 
 ALLOWED_HOSTS = [
+'https://shuman-blog.herokuapp.com/',
 'https://shuman-blog.herokuapp.com',
+'shuman-blog.herokuapp.com',
 'localhost',
 '127.0.0.1']
 
@@ -320,7 +322,7 @@ EMAIL_USE_TLS=True
 EMAIL_PORT = 587
 EMAIL_HOST_USER="frankaranda1960@gmail.com"
 EMAIL_HOST_PASSWORD="aranda@1960"
-DOMAIN = 'shuman-blog.herokuapp.com'
+#DOMAIN = 'shuman-blog.herokuapp.com'
 
 #------------------ END Configuracion Email--------------------------------------------------------------------------------------
 
