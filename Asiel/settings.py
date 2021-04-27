@@ -320,7 +320,7 @@ EMAIL_USE_TLS=True
 EMAIL_PORT = 587
 EMAIL_HOST_USER="frankaranda1960@gmail.com"
 EMAIL_HOST_PASSWORD="aranda@1960"
-DOMAIN = ''
+DOMAIN = 'https://shuman-blog.herokuapp.com/'
 
 #------------------ END Configuracion Email--------------------------------------------------------------------------------------
 
